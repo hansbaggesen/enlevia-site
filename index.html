@@ -1,60 +1,88 @@
 <!doctype html>
-<html lang="en">
+<html lang="da">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Enlevia — Starter Page</title>
-    <meta name="description" content="Starter HTML template for the Enlevia site." />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Skab forandring med data | Envelia</title>
+<meta name="description" content="Data-drevet organisationsudvikling, forandringsledelse og korte 2–3 dages kurser for ledere og projektledere. Kontakt Envelia i dag." />
+<meta name="robots" content="index,follow" />
+<meta property="og:title" content="Skab forandring med data | Envelia" />
+<meta property="og:description" content="Data-drevet organisationsudvikling, forandring og 2–3 dages kurser. Få synlige effekter – baseret på fakta, ikke mavefornemmelser." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.envelia.com/" />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="site-header" role="banner">
-        <div class="container">
-            <h1 class="site-title"><a href="/">Enlevia</a></h1>
-            <nav class="site-nav" role="navigation" aria-label="Main navigation">
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<div class="container">
+<header>
+<div class="hero" role="banner" aria-label="Envelia – landingsside">
+<div class="eyebrow">Envelia</div>
+<h1>Skab forandring med data</h1>
+<p class="lead">Vi hjælper virksomheder med at udvikle sig og gennemføre forandringer – baseret på fakta, ikke mavefornemmelser.</p>
+<div class="cta">
+<a class="btn btn-primary" href="#kontakt" aria-label="Kontakt Envelia">Kontakt os</a>
+<a class="btn btn-outline" href="#ydelser" aria-label="Se vores ydelser">Se ydelser</a>
+</div>
+</div>
+</header>
 
-    <main id="content" role="main">
-        <section class="hero">
-            <div class="container">
-                <h2>Welcome to Enlevia</h2>
-                <p>Simple, responsive starter template to get your site up and running.</p>
-                <p><a class="btn" href="#about">Get started</a></p>
-            </div>
-        </section>
 
-        <section id="about" class="container">
-            <h3>About</h3>
-            <p>Replace this content with your project's introduction and key information.</p>
-        </section>
+<main>
+<section id="ydelser" class="spaced" aria-labelledby="ydelser-title">
+<h2 id="ydelser-title">Vores ydelser</h2>
+<div class="grid features">
+<article class="card" aria-label="Organisationsudvikling">
+<div class="check" aria-hidden="true">✅</div>
+<h3>Organisationsudvikling med data</h3>
+<p class="muted">Klar indsigt i styrker og udfordringer – og konkrete tiltag, der skaber varige resultater.</p>
+</article>
+<article class="card" aria-label="Forandringsledelse">
+<div class="check" aria-hidden="true">✅</div>
+<h3>Forandringsledelse med effektmåling</h3>
+<p class="muted">Gør forandringer målbare: se hvad der virker, og hvor der skal justeres.</p>
+</article>
+<article class="card" aria-label="Kurser">
+<div class="check" aria-hidden="true">✅</div>
+<h3>Kurser i data-drevet udvikling</h3>
+<p class="muted">Intensive 2–3 dages forløb for ledere og projektledere – med praksisnære værktøjer.</p>
+</article>
+</div>
+</section>
 
-        <section id="features" class="container">
-            <h3>Features</h3>
-            <ul>
-                <li>Accessible markup</li>
-                <li>Responsive layout</li>
-                <li>Easy to customize</li>
-            </ul>
-        </section>
-    </main>
 
-    <footer class="site-footer" role="contentinfo">
-        <div class="container">
-            <p>&copy; <span id="year"></span> Enlevia. All rights reserved.</p>
-        </div>
-    </footer>
+<section class="spaced" aria-labelledby="hvorfor-title">
+<h2 id="hvorfor-title">Hvorfor vælge os?</h2>
+<div class="grid features">
+<div class="card"><strong>🎯 Beslutninger på data</strong><br><span class="muted">Fakta frem for gætterier – bedre timing og prioritering.</span></div>
+<div class="card"><strong>🤝 Sammenhæng i hverdagen</strong><br><span class="muted">Fra strategi til kultur og adfærd – der hvor arbejdet sker.</span></div>
+<div class="card"><strong>📈 Dokumenterede effekter</strong><br><span class="muted">Løbende målinger og feedback sikrer fremdrift og forankring.</span></div>
+</div>
+</section>
 
-    <script>
-        // Small script to set the current year
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+
+<section id="kontakt" class="spaced" aria-labelledby="kontakt-title">
+<h2 id="kontakt-title">Klar til at høre mere?</h2>
+<p class="muted">Skriv til os – så vender vi hurtigt tilbage.</p>
+<div class="cta">
+<a class="btn btn-primary" href="mailto:hello@envelia.com?subject=Henvendelse%20fra%20envelia.com" aria-label="Send e-mail til Envelia">Send e-mail</a>
+<a class="btn btn-outline" href="tel:+4512345678" aria-label="Ring til Envelia">Ring til os</a>
+</div>
+<p class="muted mono">hello@envelia.com · +45 12 34 56 78</p>
+</section>
+</main>
+
+
+<footer>
+<div class="grid" style="grid-template-columns:1fr auto; align-items:center">
+<div>© <span id="year"></span> Envelia</div>
+<nav aria-label="Hjælpelinks"><a class="muted" href="#">Privatliv</a> · <a class="muted" href="#">Cookies</a></nav>
+</div>
+</footer>
+</div>
+
+
+<script src="js/main.js"></script>
 </body>
 </html>

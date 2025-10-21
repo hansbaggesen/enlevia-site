@@ -1,0 +1,40 @@
+:root{
+--bg:#0b0c10; --panel:#101217; --text:#eef0f2; --muted:#bac1c8;
+--brand:#60a5fa; --brand-2:#34d399; --border:#1c2330;
+--shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+background: radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.15), transparent 40%),
+radial-gradient(1200px 800px at 90% 0%, rgba(52,211,153,.12), transparent 40%),
+var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+a{color:inherit}
+.container{max-width:980px; margin:0 auto; padding:24px}
+header{padding:72px 0 40px}
+.hero{
+background: linear-gradient(180deg, rgba(16,18,23,.7), rgba(16,18,23,.9));
+border:1px solid var(--border);
+border-radius:20px; padding:32px; box-shadow:var(--shadow);
+}
+.eyebrow{letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:var(--muted); font-size:.85rem}
+h1{font-size:clamp(2rem, 4vw, 3rem); line-height:1.1; margin:.35em 0 .2em}
+p.lead{font-size:clamp(1rem, 2vw, 1.15rem); color:#dce2e7; margin:0 0 1.2rem}
+.cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:12px}
+.btn{appearance:none; cursor:pointer; border:1px solid transparent; border-radius:14px; padding:12px 18px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:10px}
+.btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0b0d12}
+.btn-outline{border-color:#2a3344; color:var(--text); background:transparent}
+.grid{display:grid; gap:16px}
+.features{grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); margin-top:26px}
+.card{background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:18px}
+.card h3{margin:.2rem 0 .3rem; font-size:1.05rem}
+.check{font-weight:700}
+.muted{color:var(--muted)}
+.spaced{margin-top:28px}
+footer{border-top:1px solid var(--border); margin-top:40px; padding:32px 0; color:var(--muted)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:.95rem}
+:target{scroll-margin-top:90px}
