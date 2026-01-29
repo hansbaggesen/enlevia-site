@@ -42,7 +42,13 @@ footer{border-top:1px solid var(--border); margin-top:40px; padding:32px 0; colo
   .hero{padding:24px}
   .cta{flex-direction:column; align-items:stretch}
 }
-
+.visually-hidden{
+  position:absolute !important;
+  height:1px; width:1px;
+  overflow:hidden;
+  clip:rect(1px, 1px, 1px, 1px);
+  white-space:nowrap;
+}
 /* =========================
    ZEBRA THEME (sand + dark)
    Drop-in overrides
@@ -132,6 +138,13 @@ header{ padding: 28px 0 18px; }
 
 .section-dark p.lead,
 .section-dark-soft p.lead{ color: var(--text-dark); }
+.section-dark-soft a{
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
 
 /* Buttons tuned for zebra */
 .btn{
