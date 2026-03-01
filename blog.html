@@ -76,20 +76,33 @@
       padding: 60px 0;
     }
 
+    .series-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0 0 16px;
+      color: var(--text, #1a1a1a);
+    }
+
+    .series-block {
+      margin-bottom: 32px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+    }
+
     .article-item {
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: start;
       gap: 24px;
-      padding: 40px 0;
+      padding: 32px 0;
       border-bottom: 1px solid var(--border, #e8e4dc);
       text-decoration: none;
       color: inherit;
       transition: opacity 0.2s;
     }
 
-    .article-item:first-child {
-      padding-top: 0;
+    .series-block .article-item:last-child {
+      border-bottom: none;
     }
 
     .article-item:hover {
@@ -129,10 +142,6 @@
       margin-top: 6px;
       transition: transform 0.2s;
       flex-shrink: 0;
-    }
-
-    .article-item.featured .article-title {
-      font-size: clamp(1.3rem, 3vw, 1.9rem);
     }
 
     .blog-cta {
@@ -187,61 +196,73 @@
 
     <div class="articles-list" aria-label="Artikler">
 
-<a class="article-item featured" href="/blog/del-1-hvorfor-i-ikke-kan-se-vaerdien.html" aria-label="L?s artikel: Del 1: &quot;Hvorfor I ikke kan se værdien&quot;">
-        <div>
-          <p class="article-meta">Indsigter &middot; Ledelse</p>
-          <h2 class="article-title">Del 1: &quot;Hvorfor I ikke kan se værdien&quot;</h2>
-          <p class="article-excerpt">På ledermødet diskuterer I om projektforslag A eller B skal have ressourcer næste kvartal. Økonomi præsenterer omkostningerne: Projekt A koster 2,5 millioner, projekt B koster 3,8 millioner. Salg fortæller en overbevisen</p>
-        </div>
-        <span class="article-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+<div class="series-block" aria-label="Serie: Hvorfor I ikke kan se v&#230;rdien">
+        <h3 class="series-title">Serie: Hvorfor I ikke kan se v&#230;rdien</h3>
 
 
-      <a class="article-item" href="/blog/del-1-hvorfor-i-skaerer-i-det-forkerte-naar-i-sparer.html" aria-label="L?s artikel: Del 1: &quot;Hvorfor I skærer i det forkerte når I sparer&quot;">
-        <div>
-          <p class="article-meta">Indsigter &middot; Ledelse</p>
-          <h2 class="article-title">Del 1: &quot;Hvorfor I skærer i det forkerte når I sparer&quot;</h2>
-          <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige - de laver det produkt kunderne betaler for. Salg er utænkeligt at skære i - ingen salg, ingen indtægter.</p>
-        </div>
-        <span class="article-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+        <a class="article-item" href="/blog/del-1-hvorfor-i-ikke-kan-se-vaerdien.html" aria-label="L&#230;s artikel: Del 1: &quot;Hvorfor I ikke kan se v&#230;rdien&quot;">
+          <div>
+            <p class="article-meta">Del 1 &middot; Serie</p>
+            <h2 class="article-title">Del 1: &quot;Hvorfor I ikke kan se v&#230;rdien&quot;</h2>
+            <p class="article-excerpt">P&#229; lederm&#248;det diskuterer I om projektforslag A eller B skal have ressourcer n&#230;ste kvartal. &#216;konomi pr&#230;senterer omkostningerne: Projekt A koster 2,5 millioner, projekt B koster 3,8 millioner. Salg fort&#230;ller en overbevisen</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
 
 
-      <a class="article-item" href="/blog/del-2-saadan-goer-i-viden-laesbar.html" aria-label="L?s artikel: Del 2: &quot;Sådan gør I viden læsbar&quot;">
-        <div>
-          <p class="article-meta">Indsigter &middot; Ledelse</p>
-          <h2 class="article-title">Del 2: &quot;Sådan gør I viden læsbar&quot;</h2>
-          <p class="article-excerpt">I del 1 så vi problemet: Jeres viden om værdi eksisterer - den er bare fanget i formater der ikke kan tales sammen med jeres økonomistyring.</p>
-        </div>
-        <span class="article-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+        <a class="article-item" href="/blog/del-2-saadan-goer-i-viden-laesbar.html" aria-label="L&#230;s artikel: Del 2: &quot;S&#229;dan g&#248;r I viden l&#230;sbar&quot;">
+          <div>
+            <p class="article-meta">Del 2 &middot; Serie</p>
+            <h2 class="article-title">Del 2: &quot;S&#229;dan g&#248;r I viden l&#230;sbar&quot;</h2>
+            <p class="article-excerpt">I del 1 s&#229; vi problemet: Jeres viden om v&#230;rdi eksisterer - den er bare fanget i formater der ikke kan tales sammen med jeres &#248;konomistyring.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+      </div>
+
+      <div class="series-block" aria-label="Serie: Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer">
+        <h3 class="series-title">Serie: Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer</h3>
 
 
-      <a class="article-item" href="/blog/del-2-saadan-maaler-i-vaerdi-af-overhead.html" aria-label="L?s artikel: Del 2: &quot;Sådan måler I værdi af &#x27;overhead&#x27;&quot;">
-        <div>
-          <p class="article-meta">Indsigter &middot; Ledelse</p>
-          <h2 class="article-title">Del 2: &quot;Sådan måler I værdi af &#x27;overhead&#x27;&quot;</h2>
-          <p class="article-excerpt">I del 1 så vi problemet: Support-funktioner skaber værdi gennem en multiplikator-effekt - de gør at andre kan arbejde hurtigere og bedre. Men den effekt indskrives aldrig, så I ser kun omkostningen.</p>
-        </div>
-        <span class="article-arrow" aria-hidden="true">&rarr;</span>
-      </a>
+        <a class="article-item" href="/blog/del-1-hvorfor-i-skaerer-i-det-forkerte-naar-i-sparer.html" aria-label="L&#230;s artikel: Del 1: &quot;Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer&quot;">
+          <div>
+            <p class="article-meta">Del 1 &middot; Serie</p>
+            <h2 class="article-title">Del 1: &quot;Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer&quot;</h2>
+            <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige - de laver det produkt kunderne betaler for. Salg er ut&#230;nkeligt at sk&#230;re i - ingen salg, ingen indt&#230;gter.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
 
 
-      <a class="article-item" href="/blog/fra-for-travlt-til-fyringsrunde-cyklussen-i-kender-alt-for-godt.html" aria-label="L?s artikel: Fra &#x27;for travlt&#x27; til fyringsrunde Cyklussen I kender alt for godt">
+        <a class="article-item" href="/blog/del-2-saadan-maaler-i-vaerdi-af-overhead.html" aria-label="L&#230;s artikel: Del 2: &quot;S&#229;dan m&#229;ler I v&#230;rdi af &#x27;overhead&#x27;&quot;">
+          <div>
+            <p class="article-meta">Del 2 &middot; Serie</p>
+            <h2 class="article-title">Del 2: &quot;S&#229;dan m&#229;ler I v&#230;rdi af &#x27;overhead&#x27;&quot;</h2>
+            <p class="article-excerpt">I del 1 s&#229; vi problemet: Support-funktioner skaber v&#230;rdi gennem en multiplikator-effekt - de g&#248;r at andre kan arbejde hurtigere og bedre. Men den effekt indskrives aldrig, s&#229; I ser kun omkostningen.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+      </div>
+
+      <h3 class="series-title">Andre indsigter</h3>
+
+      <a class="article-item" href="/blog/fra-for-travlt-til-fyringsrunde-cyklussen-i-kender-alt-for-godt.html" aria-label="L&#230;s artikel: Fra &#x27;for travlt&#x27; til fyringsrunde Cyklussen I kender alt for godt">
         <div>
           <p class="article-meta">Indsigter &middot; Ledelse</p>
           <h2 class="article-title">Fra &#x27;for travlt&#x27; til fyringsrunde Cyklussen I kender alt for godt</h2>
-          <p class="article-excerpt">Signe banker på din dør. &quot;Jeg har simpelthen for travlt. Økonomien vokser, jeg kan ikke følge med. Jeg har brug for hjælp.&quot;</p>
+          <p class="article-excerpt">Signe banker p&#229; din d&#248;r. &quot;Jeg har simpelthen for travlt. &#216;konomien vokser, jeg kan ikke f&#248;lge med. Jeg har brug for hj&#230;lp.&quot;</p>
         </div>
         <span class="article-arrow" aria-hidden="true">&rarr;</span>
       </a>
 
 
-      <a class="article-item" href="/blog/overhead-eller-oversete-hvorfor-i-ikke-ved-hvad-jeres-support-funktioner-er-vaerd.html" aria-label="L?s artikel: Overhead eller oversete? Hvorfor I ikke ved hvad jeres support-funktioner er værd">
+      <a class="article-item" href="/blog/overhead-eller-oversete-hvorfor-i-ikke-ved-hvad-jeres-support-funktioner-er-vaerd.html" aria-label="L&#230;s artikel: Overhead eller oversete? Hvorfor I ikke ved hvad jeres support-funktioner er v&#230;rd">
         <div>
           <p class="article-meta">Indsigter &middot; Ledelse</p>
-          <h2 class="article-title">Overhead eller oversete? Hvorfor I ikke ved hvad jeres support-funktioner er værd</h2>
-          <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige - de laver det produkt kunderne betaler for. Salg er utænkeligt at skære i - ingen salg, ingen indtægter.</p>
+          <h2 class="article-title">Overhead eller oversete? Hvorfor I ikke ved hvad jeres support-funktioner er v&#230;rd</h2>
+          <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige - de laver det produkt kunderne betaler for. Salg er ut&#230;nkeligt at sk&#230;re i - ingen salg, ingen indt&#230;gter.</p>
         </div>
         <span class="article-arrow" aria-hidden="true">&rarr;</span>
       </a>
