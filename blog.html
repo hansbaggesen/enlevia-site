@@ -42,36 +42,6 @@
       max-width: 52ch;
     }
 
-    .blog-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border, #e8e4dc);
-      margin-bottom: 0;
-    }
-
-    .blog-nav .site-name {
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      color: var(--text, #1a1a1a);
-      letter-spacing: 0.02em;
-    }
-
-    .blog-nav .back-link {
-      font-size: 0.9rem;
-      color: var(--muted, #666);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .blog-nav .back-link:hover {
-      color: var(--text, #1a1a1a);
-    }
-
     .articles-list {
       padding: 60px 0;
     }
@@ -178,9 +148,13 @@
 <body>
 <div class="container">
 
-  <nav class="blog-nav" aria-label="Sidenavigation">
-    <a href="/" class="site-name">Envelia</a>
-    <a href="/" class="back-link">&larr; Tilbage til forsiden</a>
+  <nav class="site-nav" aria-label="Primær navigation">
+    <a class="site-brand" href="/">Envelia</a>
+    <div class="nav-links">
+      <a class="nav-link" href="/">Forside</a>
+      <a class="nav-link is-active" href="/blog.html">Indsigter</a>
+      <a class="nav-link" href="/#kontakt">Kontakt</a>
+    </div>
   </nav>
 
   <header class="blog-hero">

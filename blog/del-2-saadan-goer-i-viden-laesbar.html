@@ -18,32 +18,7 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/css/style-v2.css">
   <style>
-    .post-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border, #e8e4dc);
-    }
-
-    .post-nav .site-name {
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      color: var(--text, #1a1a1a);
-      letter-spacing: 0.02em;
-    }
-
-    .post-nav .back-link {
-      font-size: 0.9rem;
-      color: var(--text-secondary, #666);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .post-hero {
+.post-hero {
       padding: 72px 0 40px;
       border-bottom: 1px solid var(--border, #e8e4dc);
     }
@@ -105,10 +80,15 @@
 <body>
 <div class="container">
 
-  <nav class="post-nav" aria-label="Sidenavigation">
-    <a href="/" class="site-name">Envelia</a>
-    <a href="/blog.html" class="back-link">&larr; Tilbage til alle indsigter</a>
+    <nav class="site-nav" aria-label="Prim?r navigation">
+    <a class="site-brand" href="/">Envelia</a>
+    <div class="nav-links">
+      <a class="nav-link" href="/">Forside</a>
+      <a class="nav-link is-active" href="/blog.html">Indsigter</a>
+      <a class="nav-link" href="/#kontakt">Kontakt</a>
+    </div>
   </nav>
+
 
   <header class="post-hero">
     <div class="eyebrow">Indsigter</div>
