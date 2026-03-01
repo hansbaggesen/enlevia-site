@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ENVELIA - Controlled Lightness
    ========================================= */
 
@@ -395,6 +395,56 @@ footer nav {
 }
 
 /* =========================================
+   HELPER CLASSES
+   ========================================= */
+
+.lead-centered {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.lead-compact {
+  margin: 0 0 1rem 0;
+}
+
+.link-underline {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.features-single {
+  grid-template-columns: 1fr;
+}
+
+.muted-centered {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.cta-spaced {
+  margin-top: 20px;
+}
+
+.muted-small {
+  margin-top: 24px;
+  font-size: 0.95rem;
+}
+
+.grid-footer {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.muted-footer {
+  max-width: 60ch;
+  margin: 0;
+}
+
+.footer-nav {
+  margin-top: 16px;
+}
+/* =========================================
    UTILITIES
    ========================================= */
 
@@ -461,3 +511,4 @@ footer nav {
     border: 2px solid black;
   }
 }
+

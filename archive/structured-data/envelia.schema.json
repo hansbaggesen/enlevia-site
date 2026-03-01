@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.enlevia.com/#org",
+      "name": "Envelia",
+      "url": "https://www.enlevia.com/",
+      "email": "info@envelia.com",
+      "telephone": "+45 3166 6342",
+      "description": "Envelia helps leaders understand and govern their data situation when goals, numbers and reality no longer align — and decisions require clarity."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.enlevia.com/#website",
+      "url": "https://www.enlevia.com/",
+      "name": "Envelia",
+      "publisher": {
+        "@id": "https://www.enlevia.com/#org"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.enlevia.com/#webpage",
+      "url": "https://www.enlevia.com/",
+      "name": "Når data forstyrrer beslutninger | Envelia",
+      "isPartOf": {
+        "@id": "https://www.enlevia.com/#website"
+      },
+      "about": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "description": "Envelia hjælper ledere med at forstå og styre deres datasituation, når mål, tal og virkelighed ikke hænger sammen – og beslutninger kræver klarhed."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.enlevia.com/#service-datasituationen",
+      "name": "Datasituationen",
+      "provider": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "serviceType": "Data situation clarification for leaders",
+      "areaServed": "DK",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Leadership teams"
+      },
+      "description": "Et kort, ledelsesnært forløb der skaber overblik over, hvordan data, målinger og rapporter i praksis former prioriteringer, opmærksomhed og handlinger."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.enlevia.com/#service-kpi",
+      "name": "Value & KPI Redesign",
+      "provider": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "serviceType": "KPI and value measurement redesign",
+      "areaServed": "DK",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Leadership teams"
+      },
+      "description": "Gentænk hvad der måles, hvorfor det måles, og hvilken adfærd målingerne skaber – så styring understøtter prioritering og læring."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.enlevia.com/#service-sparring",
+      "name": "Executive Data Sparring",
+      "provider": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "serviceType": "Executive advisory on data, priorities and decision-making",
+      "areaServed": "DK",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Executives"
+      },
+      "description": "Fortrolig sparring for ledere i komplekse beslutninger, hvor data spiller en rolle – men ikke giver entydige svar."
+    }
+  ]
+}
