@@ -1,1 +1,4 @@
-﻿const yearEl = document.getElementById('year');\nif (yearEl) {\n  yearEl.textContent = new Date().getFullYear();\n}\n
+﻿const yearEl = document.getElementById('year');
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}

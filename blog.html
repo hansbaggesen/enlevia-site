@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Indsigter | Envelia</title>
+  <meta name="description" content="Artikler om styringsmodeller, governance og eksekvering i komplekse organisationer – fra Envelia.">
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="https://www.envelia.com/blog" />
+
+  <meta property="og:title" content="Indsigter | Envelia" />
+  <meta property="og:description" content="Artikler om styringsmodeller, governance og eksekvering i komplekse organisationer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.envelia.com/blog" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="css/style-v2.css">
+
+  <style>
+    /* Blog-specific overrides – ingen sorte overskrifter på grøn/mørk baggrund */
+
+    .blog-hero {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+    }
+
+    .blog-hero .eyebrow {
+      margin-bottom: 12px;
+    }
+
+    .blog-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text, #1a1a1a);
+    }
+
+    .blog-hero .lead {
+      color: var(--muted, #666);
+      max-width: 52ch;
+    }
+
+    .blog-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+      margin-bottom: 0;
+    }
+
+    .blog-nav .site-name {
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--text, #1a1a1a);
+      letter-spacing: 0.02em;
+    }
+
+    .blog-nav .back-link {
+      font-size: 0.9rem;
+      color: var(--muted, #666);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .blog-nav .back-link:hover {
+      color: var(--text, #1a1a1a);
+    }
+
+    /* Article list */
+    .articles-list {
+      padding: 60px 0;
+    }
+
+    .article-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 24px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+
+    .article-item:first-child {
+      padding-top: 0;
+    }
+
+    .article-item:hover {
+      opacity: 0.75;
+    }
+
+    .article-item:hover .article-arrow {
+      transform: translateX(4px);
+    }
+
+    .article-meta {
+      font-size: 0.85rem;
+      color: var(--muted, #888);
+      margin-bottom: 10px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .article-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 600;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .article-excerpt {
+      font-size: 0.95rem;
+      color: var(--muted, #666);
+      line-height: 1.7;
+      max-width: 60ch;
+    }
+
+    .article-arrow {
+      font-size: 1.2rem;
+      color: var(--muted, #999);
+      margin-top: 6px;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    /* Featured article – første artikel er lidt større */
+    .article-item.featured .article-title {
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+    }
+
+    /* Coming soon placeholders */
+    .articles-coming {
+      padding: 60px 0 20px;
+    }
+
+    .coming-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted, #999);
+      margin-bottom: 28px;
+    }
+
+    .coming-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .coming-card {
+      border: 1px dashed var(--border, #ddd);
+      border-radius: 4px;
+      padding: 24px;
+      opacity: 0.6;
+    }
+
+    .coming-card h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--muted, #777);
+      line-height: 1.4;
+    }
+
+    /* CTA bund */
+    .blog-cta {
+      padding: 60px 0;
+      border-top: 1px solid var(--border, #e8e4dc);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .blog-cta p {
+      color: var(--muted, #666);
+      max-width: 48ch;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .article-item {
+        grid-template-columns: 1fr;
+      }
+      .article-arrow {
+        display: none;
+      }
+      .blog-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <nav class="blog-nav" aria-label="Sidenavigation">
+    <a href="/" class="site-name">Envelia</a>
+    <a href="/" class="back-link">← Tilbage til forsiden</a>
+  </nav>
+
+  <header class="blog-hero">
+    <div class="eyebrow">Indsigter</div>
+    <h1>Tanker om styring, eksekvering og beslutninger</h1>
+    <p class="lead">
+      Artikler til ledere der navigerer i komplekse organisationer –
+      når strategi, data og virkelighed ikke hænger helt sammen.
+    </p>
+  </header>
+
+  <main>
+
+    <div class="articles-list" aria-label="Artikler">
+
+      <!-- Artikel 1 – publiceret -->
+      <a class="article-item featured" href="/blog/hvorfor-i-skaerer-i-det-forkerte.html" aria-label="Læs artikel: Hvorfor I skærer i det forkerte når I sparer">
+        <div>
+          <p class="article-meta">Governance · Prioritering</p>
+          <h2 class="article-title">Hvorfor I skærer i det forkerte når I sparer</h2>
+          <p class="article-excerpt">
+            De fleste fyringsrunder rammer støttefunktioner først. Men hvad hvis
+            jeres "overhead" faktisk skaber 40% af jeres værdi – I bare ikke kan se det?
+            Når besparelser skal gennemføres, er logikken ofte: hvad kan vi klare os uden?
+            Men det rigtige spørgsmål er: hvad skaber værdi, også når vi ikke kan måle det direkte?
+          </p>
+        </div>
+        <span class="article-arrow" aria-hidden="true">→</span>
+      </a>
+
+    </div>
+
+    <!-- Kommende artikler -->
+    <div class="articles-coming">
+      <p class="coming-label">På vej</p>
+      <div class="coming-grid">
+        <div class="coming-card">
+          <h4>Hvornår er et governance-setup godt nok?</h4>
+        </div>
+        <div class="coming-card">
+          <h4>Tre tegn på at jeres styringsmodel er designet til fortiden</h4>
+        </div>
+        <div class="coming-card">
+          <h4>Hvad M&A-integration afslører om styringslogik</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bund CTA -->
+    <div class="blog-cta">
+      <p>
+        Vil I drøfte en konkret udfordring inden næste artikel? Tag en uforpligtende snak.
+      </p>
+      <a class="btn btn-primary"
+         href="mailto:info@envelia.com?subject=Henvendelse%20fra%20Envelia%20blog&body=Hej%20Hans,%0D%0A%0D%0A"
+         aria-label="Send e-mail til Envelia">
+        Kontakt Hans
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="grid grid-footer">
+      <p class="muted muted-footer">
+        Envelia hjælper ledere med at bygge styringsmodeller der gør eksekvering mulig –
+        når strategi, data og virkelighed ikke hænger sammen.
+      </p>
+      <div>© <span id="year"></span> Envelia</div>
+    </div>
+    <nav aria-label="Hjælpelinks" class="footer-nav">
+      <a class="muted" href="#">Privatliv</a> · <a class="muted" href="#">Cookies</a>
+    </nav>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
