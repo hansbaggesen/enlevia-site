@@ -1,6 +1,6 @@
 ﻿param(
   [string]$IndexPath = "index.html",
-  [string]$JsonPath = "structured-data/envelia.schema.json"
+  [string]$JsonPath = "structured-data/enlevia.schema.json"
 )
 
 $ErrorActionPreference = 'Stop'

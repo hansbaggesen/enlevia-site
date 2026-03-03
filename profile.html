@@ -1,0 +1,355 @@
+﻿<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil | Enlevia</title>
+  <meta name="description" content="Hans Baggesen – data consulting og værdidrevet styring til ledere i komplekse organisationer.">
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.enlevia.com/profil" />
+  <meta property="og:title" content="Profil | Enlevia" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.enlevia.com/profil" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="css/style-v2.css">
+  <style>
+    .profil-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+    }
+    .profil-nav .site-name {
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--text, #1a1a1a);
+      letter-spacing: .02em;
+    }
+    .profil-nav .back-link {
+      font-size: .9rem;
+      color: var(--muted, #666);
+      text-decoration: none;
+    }
+    .profil-nav .back-link:hover {
+      color: var(--text, #1a1a1a);
+    }
+
+    /* HERO */
+    .profil-hero {
+      padding: 72px 0 80px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: start;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+    }
+    .profil-hero .eyebrow {
+      margin-bottom: 12px;
+    }
+    .profil-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text, #1a1a1a);
+      line-height: 1.15;
+    }
+    .profil-hero .subtitle {
+      font-size: .95rem;
+      color: var(--muted, #999);
+      margin-bottom: 36px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .profil-hero .lead {
+      font-size: 1.05rem;
+      color: var(--muted, #555);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      max-width: 52ch;
+    }
+    .profil-photo {
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+    }
+
+    /* ERFARING */
+    .profil-section {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+    }
+    .profil-section:last-of-type {
+      border-bottom: none;
+    }
+    .profil-section > h2 {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted, #bbb);
+      margin-bottom: 48px;
+    }
+    .erfaring-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .erfaring-item:last-child {
+      margin-bottom: 0;
+    }
+    .erfaring-meta {
+      padding-top: 2px;
+    }
+    .erfaring-org {
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 4px;
+    }
+    .erfaring-periode {
+      font-size: .8rem;
+      color: var(--muted, #bbb);
+      letter-spacing: .02em;
+    }
+    .erfaring-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .erfaring-content p {
+      font-size: .93rem;
+      color: var(--muted, #666);
+      line-height: 1.8;
+      max-width: 56ch;
+    }
+
+    /* UDDANNELSE */
+    .uddannelse-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .uddannelse-item {
+      padding: 22px 24px;
+      background: var(--sand, #f5f1ea);
+      border-radius: 4px;
+    }
+    .uddannelse-item h3 {
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--text, #1a1a1a);
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+    .uddannelse-item p {
+      font-size: .82rem;
+      color: var(--muted, #999);
+    }
+
+    /* CTA */
+    .profil-cta {
+      padding: 60px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border, #e8e4dc);
+    }
+    .profil-cta p {
+      color: var(--muted, #666);
+      max-width: 48ch;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 780px) {
+      .profil-hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .profil-photo {
+        aspect-ratio: 4/3;
+        max-height: 360px;
+        object-position: top;
+      }
+      .erfaring-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .profil-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <nav class="profil-nav" aria-label="Sidenavigation">
+    <a href="/" class="site-name">Enlevia</a>
+    <a href="/" class="back-link">← Tilbage til forsiden</a>
+  </nav>
+
+  <header class="profil-hero">
+    <div>
+      <div class="eyebrow">Profil</div>
+      <h1>Hans Baggesen</h1>
+      <p class="subtitle">Data Consulting · Værdidrevet styring</p>
+
+      <p class="lead">
+        Jeg har brugt 25 år på at løse det samme problem: hvorfor skaber
+        nogle organisationer mere værdi af det de eksekverer — og andre mindre?
+      </p>
+      <p class="lead">
+        Ikke fra sidelinjen, men fra interne lederroller hvor jeg selv har
+        haft ansvaret for at strukturerne virkede i praksis.
+      </p>
+      <p class="lead">
+        Jeg kombinerer teknisk forståelse med organisatorisk dømmekraft.
+        Jeg stiller de spørgsmål der er svære at stille indefra — og jeg
+        siger det, der er farligt at sige.
+      </p>
+      <p class="lead">
+        Uden for arbejdet finder jeg mig selv i feltet med andre cykelsutter
+        på dansk asfalt. Det har lært mig at holde hovedet koldt når det
+        uventede sker — og at det handler om at få holdet frem til linjen,
+        ikke om at køre alene stærkt.
+      </p>
+    </div>
+    <img
+      class="profil-photo"
+      src="img/HBSN.jpg"
+      alt="Hans Baggesen"
+      width="760"
+      height="1013"
+      loading="eager"
+    />
+  </header>
+
+  <main>
+
+    <section class="profil-section" aria-labelledby="erfaring-title">
+      <h2 id="erfaring-title">Erfaring</h2>
+
+      <div class="erfaring-item">
+        <div class="erfaring-meta">
+          <p class="erfaring-org">Novo Nordisk</p>
+          <p class="erfaring-periode">2021–2025</p>
+        </div>
+        <div class="erfaring-content">
+          <h3>Transformation Lead – IT Strategy &amp; Transformation</h3>
+          <p>Ledede governance-transformation på tværs af Digital, Data &amp; IT
+          i en global farmaceutisk organisation. Udviklede portfolio- og
+          prioriteringsmodel der bandt IT-investeringer direkte til forretningsbehov
+          — og fungerede som sparringspartner for VP-ledelser i oversættelsen af
+          strategisk retning til konkrete strukturer og prioriteringer.</p>
+        </div>
+      </div>
+
+      <div class="erfaring-item">
+        <div class="erfaring-meta">
+          <p class="erfaring-org">TDC NET</p>
+          <p class="erfaring-periode">2019–2021</p>
+        </div>
+        <div class="erfaring-content">
+          <h3>Head of Agile Center of Excellence</h3>
+          <p>Etablerede fælles styrings- og prioriteringsmodel på tværs af
+          IT-organisationen. Byggede det organisatoriske og datamæssige fundament
+          der gjorde det muligt at eksekvere TDC NETs CO₂-strategi som målbar
+          drift — ikke som en plan der eksisterede på papir.</p>
+        </div>
+      </div>
+
+      <div class="erfaring-item">
+        <div class="erfaring-meta">
+          <p class="erfaring-org">BEC · Nykredit</p>
+          <p class="erfaring-periode">2016–2019</p>
+        </div>
+        <div class="erfaring-content">
+          <h3>Independent Consultant</h3>
+          <p>Designede governance- og operating models på tværs af platform-
+          og udviklingsteams i regulerede finansielle miljøer. Koordinerede
+          prioritering på tværs af syv platformteams hos BEC og styrkede
+          sammenhængen mellem forretning og IT hos Nykredit.</p>
+        </div>
+      </div>
+
+      <div class="erfaring-item">
+        <div class="erfaring-meta">
+          <p class="erfaring-org">Nordea</p>
+          <p class="erfaring-periode">2013–2016</p>
+        </div>
+        <div class="erfaring-content">
+          <h3>Chief Agile Coach – Core Banking &amp; Capital Markets</h3>
+          <p>Skabte tværgående koordinering og governance på tværs af 100+
+          udviklere og flere lande. Etablerede fælles planlægnings- og
+          roadmap-struktur der skabte sammenhæng mellem legacy-systemer
+          og moderne udviklingsinitiativer.</p>
+        </div>
+      </div>
+
+      <div class="erfaring-item">
+        <div class="erfaring-meta">
+          <p class="erfaring-org">Falck · Fujitsu</p>
+          <p class="erfaring-periode">2010–2013</p>
+        </div>
+        <div class="erfaring-content">
+          <h3>Head of Software Development · Head of Unit</h3>
+          <p>Genoprettede leverancestabilitet og tillid i to udfordrede
+          organisationer. Kortlagde strukturelle udfordringer og etablerede
+          klarere ansvar, prioritering og koordinering.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="profil-section" aria-labelledby="uddannelse-title">
+      <h2 id="uddannelse-title">Uddannelse</h2>
+      <div class="uddannelse-grid">
+        <div class="uddannelse-item">
+          <h3>Master i Data-drevet Organisationsudvikling</h3>
+          <p>Aalborg Universitet · Igangværende</p>
+        </div>
+        <div class="uddannelse-item">
+          <h3>Multimedie Manager</h3>
+          <p>Københavns Tekniske Skole</p>
+        </div>
+        <div class="uddannelse-item">
+          <h3>ITIL 4 · ITXM™ Foundation</h3>
+          <p>2022–2024</p>
+        </div>
+        <div class="uddannelse-item">
+          <h3>Kanban System Design</h3>
+          <p>Kanban University · 2022</p>
+        </div>
+        <div class="uddannelse-item">
+          <h3>Professional Agile Coach · Leading SAFe</h3>
+          <p>2018–2019</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="profil-cta">
+    <p>Vil I høre mere om hvordan jeg arbejder — eller drøfte en konkret situation?</p>
+    <a class="btn btn-primary"
+       href="mailto:info@enlevia.com?subject=Henvendelse%20fra%20profil-siden&body=Hej%20Hans,%0D%0A%0D%0A"
+       aria-label="Send e-mail til Hans">
+      Send en e-mail
+    </a>
+  </div>
+
+  <footer>
+    <div class="grid grid-footer">
+      <p class="muted muted-footer">
+        Vi hjælper jer med at træffe beslutninger baseret på værdi — ikke mavefornemmelse.
+      </p>
+      <div>&copy; <span id="year"></span> Enlevia</div>
