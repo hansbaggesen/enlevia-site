@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Read(//^  <style>$/,/^  </**)"
+      "Bash(ls \"c:/Users/hvh3/OneDrive/Documents/GitHub/enlevia-site/blog/\"*.html)",
+      "Bash(python3 -c \":*)",
+      "Bash(grep -l \"main.css\" \"c:/Users/hvh3/OneDrive/Documents/GitHub/enlevia-site/blog/\"*.html)",
+      "Bash(xargs -I{} python3 -c \":*)"
     ]
   }
 }

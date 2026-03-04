@@ -16,6 +16,7 @@
   <meta property="og:url" content="https://www.enlevia.com/blog/del-1-hvorfor-i-ikke-kan-se-vaerdien.html" />
 
   <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/style-v2.css">
   <style>
 .post-hero {
@@ -78,17 +79,20 @@
 </head>
 
 <body>
-<div class="container">
+<nav>
+  <a class="nav-logo" href="/">Enlevia</a>
+  <button type="button" class="nav-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Vores service</a></li>
+    <li><a href="/blog.html" class="active">Indsigter</a></li>
+    <li><a href="/profile.html">Om Enlevia</a></li>
+    <li><a href="/#kontakt">Kontakt os</a></li>
+  </ul>
+</nav>
 
-    <nav class="site-nav" aria-label="Prim?r navigation">
-    <a class="site-brand" href="/">Enlevia</a>
-    <div class="nav-links">
-      <a class="nav-link" href="/">Vores service</a>
-      <a class="nav-link is-active" href="/blog.html">Indsigter</a>
-      <a class="nav-link" href="/profile.html">Om Enlevia</a>
-      <a class="nav-link" href="/#kontakt">Kontakt os</a>
-    </div>
-  </nav>
+<div class="container">
 
 
   <header class="post-hero">
@@ -149,20 +153,12 @@
     </div>
   </main>
 
-  <footer>
-    <div class="grid grid-footer">
-      <p class="muted muted-footer">
-        Enlevia hj&aelig;lper ledere med at bygge styringsmodeller, der g&oslash;r eksekvering mulig &ndash;
-        n&aring;r strategi, data og virkelighed ikke h&aelig;nger sammen.
-      </p>
-      <div>&copy; <span id="year"></span> Enlevia</div>
-    </div>
-    <nav aria-label="Hj&aelig;lpelinks" class="footer-nav">
-      <a class="muted" href="#">Privatliv</a> &middot; <a class="muted" href="#">Cookies</a>
-    </nav>
-  </footer>
-
 </div>
+
+<footer>
+  <a class="logo" href="/">Enlevia</a>
+  <p>&copy; <span id="year"></span> Enlevia</p>
+</footer>
 
 <script src="/js/main.js" defer></script>
 </body>
