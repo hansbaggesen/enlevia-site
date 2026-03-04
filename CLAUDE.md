@@ -25,6 +25,7 @@ pwsh scripts/sync-ldjson.ps1
 - `blog.html` — article listing page
 - `blog/*.html` — individual blog articles
 - `profile.html` — Hans Baggesen's profile (unlinked from main nav)
+- `About.html` — standalone about page with its own self-contained design system (Fraunces + DM Sans fonts, green palette `#1a3a2e`/`#2d5c48`); does **not** use `css/style-v2.css`
 
 **Styles:**
 - `css/style-v2.css` — the single shared stylesheet (CSS custom properties, no preprocessor)
@@ -37,6 +38,8 @@ pwsh scripts/sync-ldjson.ps1
 **Content language:** Danish throughout. Use Danish text for any new copy.
 
 **Blog articles** in `blog/` exist both as `.docx` source files and compiled `.html` files. The `.docx` files are not served.
+
+**Scratch files:** `Notes_toabout.md` is a working notes file in the repo root — not served, not part of the site.
 
 ## CSS Conventions
 

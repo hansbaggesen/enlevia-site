@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Data Consulting | Enlevia </title>
+  <title>Data Consulting | Enlevia</title>
   <meta name="description" content="Enlevia hjælper ledere med at bygge styringsmodeller, der gør eksekvering mulig – når strategi, data og virkelighed ikke hænger sammen.">
   <meta name="robots" content="index,follow" />
 
@@ -41,211 +41,529 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/style-v2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --green-dark:   #1a3a2e;
+      --green-mid:    #2d5c48;
+      --green-accent: #3d7a5f;
+      --green-light:  #5a9e7e;
+      --cream:        #f5f2ec;
+      --cream-warm:   #ede9df;
+      --text-dark:    #1a1a18;
+      --text-mid:     #3d3d38;
+      --text-muted:   #7a7a72;
+      --white:        #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--green-dark); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--green-dark);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    @media (max-width: 680px) {
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        padding: 0.5rem 0;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li a {
+        display: block;
+        padding: 0.75rem clamp(1.5rem, 5vw, 4rem);
+        font-size: 1rem;
+      }
+
+      .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 7vw, 7rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(93,154,126,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      position: relative;
+    }
+
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-body {
+      font-size: 1.05rem;
+      max-width: 600px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background: var(--white);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--cream);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: var(--white);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .section-warm { background: var(--cream-warm); }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--green-accent);
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 2px;
+      border-top: 3px solid var(--green-accent);
+    }
+
+    .card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--green-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.35;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p:last-of-type { margin-bottom: 0; }
+
+    .card a {
+      display: inline-block;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--green-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      color: var(--text-mid);
+      max-width: 680px;
+      line-height: 1.75;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--green-dark);
+      padding: clamp(4rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      font-size: 1rem;
+    }
+
+    .cta-section .note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+  </style>
 </head>
-
 <body>
-<div class="container">
 
-  <nav class="site-nav" aria-label="Primær navigation">
-    <a class="site-brand" href="/">Enlevia</a>
-    <div class="nav-links">
-      <a class="nav-link is-active" href="/">Vores service</a>
-      <a class="nav-link" href="/blog.html">Indsigter</a>
-      <a class="nav-link" href="/profile.html">Om Enlevia</a>
-      <a class="nav-link" href="/#kontakt">Kontakt os</a>
-    </div>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">Enlevia</a>
+    <button type="button" class="nav-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/" class="active">Vores service</a></li>
+      <li><a href="/blog.html">Indsigter</a></li>
+      <li><a href="/profile.html">Om Enlevia</a></li>
+      <li><a href="#kontakt">Kontakt os</a></li>
+    </ul>
   </nav>
 
-  <!-- HERO (dark) -->
-  <header>
-    <div class="section-dark" role="banner" aria-label="Enlevia – landingsside">
-      <div class="eyebrow">Enlevia</div>
-
-      <h1>Når data forstyrrer beslutninger</h1>
-
-      <p class="lead">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label fade-up">Enlevia</p>
+      <h1 class="fade-up delay-1">Når data <em>forstyrrer</em><br>beslutninger</h1>
+      <p class="hero-body fade-up delay-2">
         Det er sjældent, fordi der mangler tal – men fordi styringen ikke er
         designet til den virkelighed, organisationen står i.
       </p>
-
-      <p class="lead">
+      <p class="hero-body fade-up delay-2">
         Når I skal prioritere, starter diskussionen forfra hver gang.
         Forskellige dele af organisationen måler forskelligt, styrer forskelligt,
         og ingen ved, hvad der egentlig tæller mest.
       </p>
-
-      <p class="lead">
-        Vi bygger styringsmodeller, der skaber fælles retning – og gør det muligt
-        faktisk at prioritere og eksekvere.
-      </p>
-
-      <div class="cta">
-        <a class="btn btn-primary" href="#kontakt">Book en uforpligtende snak</a>
-        <a class="btn btn-outline" href="#hvornaar">Se om det passer til jer</a>
+      <div class="hero-cta fade-up delay-2">
+        <a class="btn-primary" href="#kontakt">Book en uforpligtende snak</a>
+        <a class="btn-outline" href="#hvornaar">Se om det passer til jer</a>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main>
+  <!-- TRIGGER MOMENTS -->
+  <section id="hvornaar" class="section section-warm">
+    <div class="section-inner">
+      <p class="section-tag fade-up">Hvornår kan vi hjælpe</p>
+      <h2 class="fade-up">Vi kan hjælpe jer, når...</h2>
+      <div class="divider fade-up"></div>
 
-    <!-- TRIGGER MOMENTS -->
-    <section id="hvornaar" class="spaced section-sand" aria-labelledby="hvornaar-title">
-      <h2 id="hvornaar-title">Vi kan hjælpe jer, når...</h2>
-
-      <div class="grid features">
-        <article class="card">
+      <div class="cards-grid">
+        <article class="card fade-up">
           <h3>Jeres styringsmodel blev designet til en anden organisation end den, I er i dag</h3>
-          <p class="muted">
+          <p>
             Efter M&A, vækst, reorganisering eller strategisk pivot hænger
             målinger og styringsstrukturer ikke længere sammen med den virkelighed,
             I skal navigere i.
           </p>
         </article>
 
-        <article class="card">
+        <article class="card fade-up delay-1">
           <h3>Forskellige dele af organisationen optimerer forskelligt – og ingen kan se helheden</h3>
-          <p class="muted">
+          <p>
             HR, salg, økonomi og IT måler hver deres. Alle har ret lokalt,
             men diskussionen om, hvad der tæller globalt, går i ring.
           </p>
         </article>
 
-        <article class="card">
+        <article class="card fade-up delay-2">
           <h3>I ved, hvad I vil strategisk – men eksekvering kører fast</h3>
-          <p class="muted">
+          <p>
             Alt er vigtigt, intet bliver fravalgt. Styringsmodellen gør det umuligt
             at beslutte, hvad der skal ske først – eller hvad der slet ikke skal ske.
           </p>
         </article>
       </div>
 
-      <p class="lead lead-centered">
+      <p class="section-lead fade-up">
         Udfordringen er ikke at skaffe bedre data – men at designe styring, der muliggør eksekvering.
       </p>
-    </section>
+    </div>
+  </section>
 
-    <!-- PRODUCTS -->
-    <section id="produkter" class="spaced section-sand" aria-labelledby="produkter-title">
-      <h2 id="produkter-title">Hvor vil I starte?</h2>
+  <!-- PRODUCTS -->
+  <section id="produkter" class="section">
+    <div class="section-inner">
+      <p class="section-tag fade-up">Vores forløb</p>
+      <h2 class="fade-up">Hvor vil I starte?</h2>
+      <div class="divider fade-up"></div>
 
-      <div class="grid features">
-
-        <article class="card" aria-label="Hvad styrer jer - egentlig?">
+      <div class="cards-grid">
+        <article class="card fade-up">
           <h3>Hvad styrer jer – egentlig?</h3>
-          <p class="muted"><em>Kortlægger hvad der styrer jer</em></p>
-
-          <p class="muted">
+          <p><em>Kortlægger hvad der styrer jer</em></p>
+          <p>
             Ofte er det uklart, hvilke målinger, strukturer og processer der i praksis
             former organisationens handlinger – uanset hvad strategien siger.
           </p>
-
-          <p class="muted">
-            Forløbet er kort og ledelsesnært (2-4 uger) og bygger på 5-10 samtaler med
+          <p>
+            Forløbet er kort og ledelsesnært (2–4 uger) og bygger på 5–10 samtaler med
             nøgleledere. Det skaber et fælles billede af, hvad der reelt styrer
             handling og eksekvering i organisationen.
           </p>
-
-          <p class="muted">
+          <p>
             <strong>Output:</strong> En konkret rapport, der gør det tydeligt, hvor jeres styring
             understøtter – og hvor den modarbejder – eksekvering.
           </p>
-
-          <a class="muted link-underline" href="#kontakt">Drøft en kortlægning</a>
+          <a href="#kontakt">Drøft en kortlægning</a>
         </article>
-        <!-- out for now
-        <article class="card" aria-label="Design af styring til eksekvering">
-          <h3>Byg styring der passer til den organisation I er i dag</h3>
-          <p class="muted"><em>Governance, målsystemer og porteføljestrukturer</em></p>
 
-          <p class="muted">
-            Når organisationen har ændret sig gennem vækst, M&A eller strategisk
-            pivot, hænger styringsmodellen sjældent med.
-          </p>
-
-          <p class="muted">
-            Vi designer styringsmodeller der gør det muligt at se sammenhænge,
-            træffe beslutninger med konsekvens og faktisk levere - ikke standardframeworks,
-            men governance der passer til jeres kompleksitet.
-          </p>
-
-          <p class="muted">
-            <strong>Output:</strong> En implementerbar styringsmodel med governance-rammer,
-            målsystemer og porteføljestrukturer - designet til at understøtte eksekvering.
-          </p>
-
-          <a class="muted link-underline" href="#kontakt">Drøft jeres styringsmodel.</a>
-        </article>
-        out for now-->
-        <article class="card" aria-label="Ledelsessparring om eksekvering">
+        <article class="card fade-up delay-1">
           <h3>Ledelsessparring om eksekvering</h3>
-          <p class="muted"><em>Fortrolig sparring gennem komplekse beslutninger</em></p>
-
-          <p class="muted">
+          <p><em>Fortrolig sparring gennem komplekse beslutninger</em></p>
+          <p>
             Nogle beslutninger kan ikke vente. I står midt i et valg, der skal træffes nu –
             og konsekvenserne er svære at overskue.
           </p>
-          <p class="muted">
-            Sparringen er struktureret og fortrolig (3-6 sessioner). Vi arbejder med det,
+          <p>
+            Sparringen er struktureret og fortrolig (3–6 sessioner). Vi arbejder med det,
             der faktisk ligger på bordet: prioriteringer, der er gået i hårdknude,
             organisationsændringer der skal lande rigtigt, eller strategisk retning,
             der skal omsættes til konkret handling.
           </p>
-
-        
-
-          <p class="muted">
+          <p>
             <strong>Output:</strong> Klarhed om, hvordan I navigerer den konkrete
             beslutning – og indsigt i, hvilke strukturer der understøtter eksekvering fremadrettet.
           </p>
-
-          <a class="muted link-underline" href="#kontakt">Book en fortrolig samtale</a>
+          <a href="#kontakt">Book en fortrolig samtale</a>
         </article>
-
       </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="kontakt" class="spaced section-sand" aria-labelledby="kontakt-title">
-      <h2 id="kontakt-title">Lad os tage en snak</h2>
-
-      <p class="muted">
-        Start med en kort, uforpligtende samtale om jeres situation.
-        Vi finder ud af, om et forløb giver mening – og i så fald hvilken indgang der passer bedst.
-      </p>
-
-      <div class="cta cta-spaced">
-        <a class="btn btn-primary"
-           href="mailto:info@enlevia.com?subject=Henvendelse%20fra%20enlevia.com&body=Hej%20Hans,%0D%0A%0D%0AJeg%20vil%20gerne%20h%C3%B8re%20mere%20om..."
-           aria-label="Send e-mail til Enlevia">
-          Send en e-mail
-        </a>
-      </div>
-
-      <p class="muted muted-small">
-        Jeg vender typisk tilbage inden for 24 timer.
-      </p>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="grid grid-footer">
-      <p class="muted muted-footer">
-          Vi hjælper jer med at træffe beslutninger baseret på værdi — ikke mavefornemmelse
-      </p>
-      <div>© <span id="year"></span> Enlevia</div>
     </div>
-    <!--
-    <nav aria-label="Hjælpelinks" class="footer-nav">
-      <a class="muted" href="#">Privatliv</a> · <a class="muted" href="#">Cookies</a>
-      · <a class="muted" href="/blog.html">Blog</a>
-    </nav>
-    -->
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section id="kontakt" class="cta-section">
+    <h2>Lad os tage en snak</h2>
+    <p>
+      Start med en kort, uforpligtende samtale om jeres situation.
+      Vi finder ud af, om et forløb giver mening – og i så fald hvilken indgang der passer bedst.
+    </p>
+    <a class="btn-primary"
+       href="mailto:info@enlevia.com?subject=Henvendelse%20fra%20enlevia.com&body=Hej%20Hans,%0D%0A%0D%0AJeg%20vil%20gerne%20h%C3%B8re%20mere%20om..."
+       aria-label="Send e-mail til Enlevia">
+      Send en e-mail
+    </a>
+    <p class="note">Jeg vender typisk tilbage inden for 24 timer.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="logo" href="/">Enlevia</a>
+    <p>Vi hjælper jer med at træffe beslutninger baseret på værdi — ikke mavefornemmelse.</p>
+    <p>© <span id="year"></span> Enlevia</p>
   </footer>
 
-</div>
-
-<script src="js/main.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

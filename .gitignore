@@ -5,6 +5,8 @@ desktop.ini
 # Word/Office temp files
 ~$*.docx
 *.tmp
+Notes_toabout.md
+About.html
 
 # macOS
 .DS_Store

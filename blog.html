@@ -1,11 +1,11 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Indsigter | Enlevia</title>
-  <meta name="description" content="Artikler om styringsmodeller, governance og eksekvering i komplekse organisationer &ndash; fra Enlevia." />
+  <meta name="description" content="Artikler om styringsmodeller, governance og eksekvering i komplekse organisationer – fra Enlevia." />
   <meta name="robots" content="index,follow" />
 
   <link rel="canonical" href="https://www.enlevia.com/blog" />
@@ -16,262 +16,487 @@
   <meta property="og:url" content="https://www.enlevia.com/blog" />
 
   <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="css/style-v2.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* Blog-specific overrides */
-
-    .blog-hero {
-      padding: 80px 0 60px;
-      border-bottom: 1px solid var(--border, #e8e4dc);
+    :root {
+      --green-dark:   #1a3a2e;
+      --green-mid:    #2d5c48;
+      --green-accent: #3d7a5f;
+      --green-light:  #5a9e7e;
+      --cream:        #f5f2ec;
+      --cream-warm:   #ede9df;
+      --text-dark:    #1a1a18;
+      --text-mid:     #3d3d38;
+      --text-muted:   #7a7a72;
+      --white:        #ffffff;
     }
 
-    .blog-hero .eyebrow {
-      margin-bottom: 12px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
     }
 
-    .blog-hero h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
       font-weight: 600;
-      margin-bottom: 16px;
-      color: var(--text, #1a1a1a);
+      color: var(--green-dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
     }
 
-    .blog-hero .lead {
-      color: var(--muted, #666);
-      max-width: 52ch;
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
     }
 
-    .articles-list {
-      padding: 60px 0;
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--green-dark); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--green-dark);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    @media (max-width: 680px) {
+      .nav-toggle { display: flex; }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        padding: 0.5rem 0;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links li a {
+        display: block;
+        padding: 0.75rem clamp(1.5rem, 5vw, 4rem);
+        font-size: 1rem;
+      }
+
+      .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 7vw, 7rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(93,154,126,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      position: relative;
+    }
+
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-body {
+      font-size: 1.05rem;
+      max-width: 560px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+    }
+
+    /* ── ARTICLES SECTION ── */
+    .articles-section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .articles-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── SERIES BLOCK ── */
+    .series-block {
+      margin-bottom: 4rem;
+    }
+
+    .series-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
     }
 
     .series-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin: 0 0 16px;
-      color: var(--text, #1a1a1a);
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--green-dark);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
     }
 
-    .series-block {
-      margin-bottom: 32px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border, #e8e4dc);
-    }
-
+    /* ── ARTICLE ITEM ── */
     .article-item {
       display: grid;
       grid-template-columns: 1fr auto;
-      align-items: start;
-      gap: 24px;
-      padding: 32px 0;
-      border-bottom: 1px solid var(--border, #e8e4dc);
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-top: 1px solid rgba(0,0,0,0.07);
       text-decoration: none;
       color: inherit;
       transition: opacity 0.2s;
     }
 
     .series-block .article-item:last-child {
-      border-bottom: none;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
     }
 
-    .article-item:hover {
-      opacity: 0.75;
-    }
+    .article-item:hover { opacity: 0.7; }
 
-    .article-item:hover .article-arrow {
-      transform: translateX(4px);
-    }
+    .article-item:hover .article-arrow { transform: translateX(4px); }
 
     .article-meta {
-      font-size: 0.85rem;
-      color: var(--muted, #888);
-      margin-bottom: 10px;
-      letter-spacing: 0.03em;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: var(--green-accent);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
     }
 
     .article-title {
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      font-weight: 600;
-      color: var(--text, #1a1a1a);
-      margin-bottom: 12px;
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 300;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
       line-height: 1.3;
+      letter-spacing: -0.01em;
     }
 
     .article-excerpt {
-      font-size: 0.95rem;
-      color: var(--muted, #666);
-      line-height: 1.7;
-      max-width: 60ch;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 58ch;
     }
 
     .article-arrow {
-      font-size: 1.2rem;
-      color: var(--muted, #999);
-      margin-top: 6px;
+      font-size: 1.1rem;
+      color: var(--green-accent);
       transition: transform 0.2s;
       flex-shrink: 0;
+      opacity: 0.6;
     }
 
-    .blog-cta {
-      padding: 60px 0;
-      border-top: 1px solid var(--border, #e8e4dc);
+    /* ── STANDALONE ARTICLES ── */
+    .standalone-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 0;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--green-dark);
+      padding: clamp(4rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      max-width: 440px;
+      margin: 0 auto 2.5rem;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background: var(--white);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--cream);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
-    .blog-cta p {
-      color: var(--muted, #666);
-      max-width: 48ch;
-      font-size: 0.95rem;
+    footer .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
     }
 
+    footer p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+
     @media (max-width: 600px) {
-      .article-item {
-        grid-template-columns: 1fr;
-      }
-      .article-arrow {
-        display: none;
-      }
-      .blog-cta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+      .article-item { grid-template-columns: 1fr; }
+      .article-arrow { display: none; }
     }
   </style>
 </head>
-
 <body>
-<div class="container">
 
-  <nav class="site-nav" aria-label="Primær navigation">
-    <a class="site-brand" href="/">Enlevia</a>
-    <div class="nav-links">
-      <a class="nav-link" href="/">Vores service</a>
-      <a class="nav-link is-active" href="/blog.html">Indsigter</a>
-      <a class="nav-link" href="/profile.html">Om Enlevia</a>
-      <a class="nav-link" href="/#kontakt">Kontakt os</a>
-    </div>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">Enlevia</a>
+    <button type="button" class="nav-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">Vores service</a></li>
+      <li><a href="/blog.html" class="active">Indsigter</a></li>
+      <li><a href="/profile.html">Om Enlevia</a></li>
+      <li><a href="/#kontakt">Kontakt os</a></li>
+    </ul>
   </nav>
 
-  <header class="blog-hero">
-    <div class="eyebrow">Indsigter</div>
-    <h1>Tanker om styring, eksekvering og beslutninger</h1>
-    <p class="lead">
-      Artikler til ledere, der navigerer i komplekse organisationer &ndash;
-      n&aring;r strategi, data og virkelighed ikke h&aelig;nger helt sammen.
-    </p>
-  </header>
-
-  <main>
-
-    <div class="articles-list" aria-label="Artikler">
-
-<div class="series-block" aria-label="Serie: Hvorfor I ikke kan se v&#230;rdien">
-        <h3 class="series-title">Serie: Hvorfor I ikke kan se v&#230;rdien</h3>
-
-
-        <a class="article-item" href="/blog/del-1-hvorfor-i-ikke-kan-se-vaerdien.html" aria-label="L&#230;s artikel: Del 1: &quot;Hvorfor I ikke kan se v&#230;rdien&quot;">
-          <div>
-            <p class="article-meta">Del 1 &middot; Serie</p>
-            <h2 class="article-title">Del 1: &quot;Hvorfor I ikke kan se v&#230;rdien&quot;</h2>
-            <p class="article-excerpt">P&#229; lederm&#248;det diskuterer I om projektforslag A eller B skal have ressourcer n&#230;ste kvartal. &#216;konomi pr&#230;senterer omkostningerne: Projekt A koster 2,5 millioner, projekt B koster 3,8 millioner. Salg fort&#230;ller en overbevisen</p>
-          </div>
-          <span class="article-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
-
-        <a class="article-item" href="/blog/del-2-saadan-goer-i-viden-laesbar.html" aria-label="L&#230;s artikel: Del 2: &quot;S&#229;dan g&#248;r I viden l&#230;sbar&quot;">
-          <div>
-            <p class="article-meta">Del 2 &middot; Serie</p>
-            <h2 class="article-title">Del 2: &quot;S&#229;dan g&#248;r I viden l&#230;sbar&quot;</h2>
-            <p class="article-excerpt">I del 1 s&#229; vi problemet: Jeres viden om v&#230;rdi eksisterer - den er bare fanget i formater der ikke kan tales sammen med jeres &#248;konomistyring.</p>
-          </div>
-          <span class="article-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
-      </div>
-
-      <div class="series-block" aria-label="Serie: Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer">
-        <h3 class="series-title">Serie: Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer</h3>
-
-
-        <a class="article-item" href="/blog/del-1-hvorfor-i-skaerer-i-det-forkerte-naar-i-sparer.html" aria-label="L&#230;s artikel: Del 1: &quot;Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer&quot;">
-          <div>
-            <p class="article-meta">Del 1 &middot; Serie</p>
-            <h2 class="article-title">Del 1: &quot;Hvorfor I sk&#230;rer i det forkerte n&#229;r I sparer&quot;</h2>
-            <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige - de laver det produkt kunderne betaler for. Salg er ut&#230;nkeligt at sk&#230;re i - ingen salg, ingen indt&#230;gter.</p>
-          </div>
-          <span class="article-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
-
-        <a class="article-item" href="/blog/del-2-saadan-maaler-i-vaerdi-af-overhead.html" aria-label="L&#230;s artikel: Del 2: &quot;S&#229;dan m&#229;ler I v&#230;rdi af &#x27;overhead&#x27;&quot;">
-          <div>
-            <p class="article-meta">Del 2 &middot; Serie</p>
-            <h2 class="article-title">Del 2: &quot;S&#229;dan m&#229;ler I v&#230;rdi af &#x27;overhead&#x27;&quot;</h2>
-            <p class="article-excerpt">I del 1 s&#229; vi problemet: Support-funktioner skaber v&#230;rdi gennem en multiplikator-effekt - de g&#248;r at andre kan arbejde hurtigere og bedre. Men den effekt indskrives aldrig, s&#229; I ser kun omkostningen.</p>
-          </div>
-          <span class="article-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-
-      </div>
-
-      <h3 class="series-title">Andre indsigter</h3>
-
-      <a class="article-item" href="/blog/fra-for-travlt-til-fyringsrunde-cyklussen-i-kender-alt-for-godt.html" aria-label="L&#230;s artikel: Fra &#x27;for travlt&#x27; til fyringsrunde Cyklussen I kender alt for godt">
-        <div>
-          <p class="article-meta">Indsigter &middot; Ledelse</p>
-          <h2 class="article-title">Fra &#x27;for travlt&#x27; til fyringsrunde Cyklussen I kender alt for godt</h2>
-          <p class="article-excerpt">Signe banker p&#229; din d&#248;r. &quot;Jeg har simpelthen for travlt. &#216;konomien vokser, jeg kan ikke f&#248;lge med. Jeg har brug for hj&#230;lp.&quot;</p>
-        </div>
-        <span class="article-arrow" aria-hidden="true">&rarr;</span>
-      </a>
-
-
-      <a class="article-item" href="/blog/overhead-eller-oversete-hvorfor-i-ikke-ved-hvad-jeres-support-funktioner-er-vaerd.html" aria-label="L&#230;s artikel: Overhead eller oversete? Hvorfor I ikke ved hvad jeres support-funktioner er v&#230;rd">
-        <div>
-          <p class="article-meta">Indsigter &middot; Ledelse</p>
-          <h2 class="article-title">Overhead eller oversete? Hvorfor I ikke ved hvad jeres support-funktioner er v&#230;rd</h2>
-          <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige - de laver det produkt kunderne betaler for. Salg er ut&#230;nkeligt at sk&#230;re i - ingen salg, ingen indt&#230;gter.</p>
-        </div>
-        <span class="article-arrow" aria-hidden="true">&rarr;</span>
-      </a>
-
-    </div>
-
-    <div class="blog-cta">
-      <p>
-        Vil I dr&oslash;fte en konkret udfordring inden n&aelig;ste artikel? Tag en uforpligtende snak.
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label fade-up">Indsigter</p>
+      <h1 class="fade-up delay-1">Tanker om styring,<br>eksekvering og beslutninger</h1>
+      <p class="hero-body fade-up delay-2">
+        Artikler til ledere, der navigerer i komplekse organisationer –
+        når strategi, data og virkelighed ikke hænger helt sammen.
       </p>
-      <a class="btn btn-primary"
-         href="mailto:info@enlevia.com?subject=Henvendelse%20fra%20Enlevia%20blog&body=Hej%20Hans,%0D%0A%0D%0A"
-         aria-label="Send e-mail til Enlevia">
-        Kontakt Hans
-      </a>
     </div>
+  </section>
 
-  </main>
+  <!-- ARTICLES -->
+  <section class="articles-section">
+    <div class="articles-inner">
 
+      <!-- Serie 1 -->
+      <div class="series-block">
+        <p class="series-label">Serie</p>
+        <h2 class="series-title">Hvorfor I ikke kan se værdien</h2>
+
+        <a class="article-item" href="/blog/del-1-hvorfor-i-ikke-kan-se-vaerdien.html"
+           aria-label="Læs artikel: Del 1 – Hvorfor I ikke kan se værdien">
+          <div>
+            <p class="article-meta">Del 1 &middot; Serie</p>
+            <h3 class="article-title">Del 1: "Hvorfor I ikke kan se værdien"</h3>
+            <p class="article-excerpt">På ledermødet diskuterer I om projektforslag A eller B skal have ressourcer næste kvartal. Økonomi præsenterer omkostningerne: Projekt A koster 2,5 millioner, projekt B koster 3,8 millioner.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="article-item" href="/blog/del-2-saadan-goer-i-viden-laesbar.html"
+           aria-label="Læs artikel: Del 2 – Sådan gør I viden læsbar">
+          <div>
+            <p class="article-meta">Del 2 &middot; Serie</p>
+            <h3 class="article-title">Del 2: "Sådan gør I viden læsbar"</h3>
+            <p class="article-excerpt">I del 1 så vi problemet: Jeres viden om værdi eksisterer – den er bare fanget i formater der ikke kan tales sammen med jeres økonomistyring.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Serie 2 -->
+      <div class="series-block">
+        <p class="series-label">Serie</p>
+        <h2 class="series-title">Hvorfor I skærer i det forkerte når I sparer</h2>
+
+        <a class="article-item" href="/blog/del-1-hvorfor-i-skaerer-i-det-forkerte-naar-i-sparer.html"
+           aria-label="Læs artikel: Del 1 – Hvorfor I skærer i det forkerte når I sparer">
+          <div>
+            <p class="article-meta">Del 1 &middot; Serie</p>
+            <h3 class="article-title">Del 1: "Hvorfor I skærer i det forkerte når I sparer"</h3>
+            <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige – de laver det produkt kunderne betaler for. Salg er utænkeligt at skære i.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="article-item" href="/blog/del-2-saadan-maaler-i-vaerdi-af-overhead.html"
+           aria-label="Læs artikel: Del 2 – Sådan måler I værdi af overhead">
+          <div>
+            <p class="article-meta">Del 2 &middot; Serie</p>
+            <h3 class="article-title">Del 2: "Sådan måler I værdi af 'overhead'"</h3>
+            <p class="article-excerpt">I del 1 så vi problemet: Support-funktioner skaber værdi gennem en multiplikator-effekt – de gør at andre kan arbejde hurtigere og bedre. Men den effekt indskrives aldrig.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <!-- Andre indsigter -->
+      <div class="series-block">
+        <p class="series-label">Andre indsigter</p>
+
+        <a class="article-item" href="/blog/fra-for-travlt-til-fyringsrunde-cyklussen-i-kender-alt-for-godt.html"
+           aria-label="Læs artikel: Fra 'for travlt' til fyringsrunde">
+          <div>
+            <p class="article-meta">Indsigter &middot; Ledelse</p>
+            <h3 class="article-title">Fra 'for travlt' til fyringsrunde – Cyklussen I kender alt for godt</h3>
+            <p class="article-excerpt">Signe banker på din dør. "Jeg har simpelthen for travlt. Økonomien vokser, jeg kan ikke følge med. Jeg har brug for hjælp."</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+        <a class="article-item" href="/blog/overhead-eller-oversete-hvorfor-i-ikke-ved-hvad-jeres-support-funktioner-er-vaerd.html"
+           aria-label="Læs artikel: Overhead eller oversete?">
+          <div>
+            <p class="article-meta">Indsigter &middot; Ledelse</p>
+            <h3 class="article-title">Overhead eller oversete? Hvorfor I ikke ved hvad jeres support-funktioner er værd</h3>
+            <p class="article-excerpt">Bestyrelsen vil have 15% reduktion i omkostninger. Produktionsmedarbejderne er hellige – de laver det produkt kunderne betaler for.</p>
+          </div>
+          <span class="article-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Vil I drøfte en konkret udfordring?</h2>
+    <p>Tag en uforpligtende snak inden næste artikel.</p>
+    <a class="btn-primary"
+       href="mailto:info@enlevia.com?subject=Henvendelse%20fra%20Enlevia%20blog&body=Hej%20Hans,%0D%0A%0D%0A"
+       aria-label="Kontakt Hans via e-mail">
+      Kontakt Hans
+    </a>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <div class="grid grid-footer">
-      <p class="muted muted-footer">
-        Enlevia hj&aelig;lper ledere med at bygge styringsmodeller, der g&oslash;r eksekvering mulig &ndash;
-        n&aring;r strategi, data og virkelighed ikke h&aelig;nger sammen.
-      </p>
-      <div>&copy; <span id="year"></span> Enlevia</div>
-    </div>
-    <nav aria-label="Hj&aelig;lpelinks" class="footer-nav">
-      <a class="muted" href="#">Privatliv</a> &middot; <a class="muted" href="#">Cookies</a>
-    </nav>
+    <a class="logo" href="/">Enlevia</a>
+    <p>Enlevia hjælper ledere med at bygge styringsmodeller, der gør eksekvering mulig.</p>
+    <p>© <span id="year"></span> Enlevia</p>
   </footer>
 
-</div>
-
-<script src="js/main.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
