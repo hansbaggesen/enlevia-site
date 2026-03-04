@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Om Enlevia | Enlevia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark:   #1a3a2e;
+      --green-mid:    #2d5c48;
+      --green-accent: #3d7a5f;
+      --green-light:  #5a9e7e;
+      --cream:        #f5f2ec;
+      --cream-warm:   #ede9df;
+      --text-dark:    #1a1a18;
+      --text-mid:     #3d3d38;
+      --text-muted:   #7a7a72;
+      --white:        #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--green-dark); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 7vw, 7rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(93,154,126,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      position: relative;
+    }
+
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .hero-body {
+      font-size: 1.1rem;
+      max-width: 600px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── OM ENLEVIA (split) ── */
+    .om-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .om-split { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .om-split-text {}
+
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .om-split-text h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--green-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .om-split-text p {
+      color: var(--text-mid);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .om-split-image {
+      background: var(--green-mid);
+      border-radius: 2px;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .om-split-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      mix-blend-mode: luminosity;
+      opacity: 0.85;
+    }
+
+    .image-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── TILGANG ── */
+    .tilgang-section {
+      background: var(--cream-warm);
+    }
+
+    .tilgang-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .tilgang-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .tilgang-intro h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--green-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .tilgang-intro p {
+      color: var(--text-mid);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .tilgang-intro .pull-quote {
+      border-left: 3px solid var(--green-accent);
+      padding-left: 1.25rem;
+      margin: 2rem 0;
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--green-dark);
+      line-height: 1.5;
+    }
+
+    .tilgang-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .pillar {
+      padding: 1.75rem;
+      background: var(--white);
+      border-radius: 2px;
+      border-top: 3px solid var(--green-accent);
+    }
+
+    .pillar h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar p {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* ── MØD HANS ── */
+    .moed-hans-section {
+      background: var(--white);
+    }
+
+    .moed-hans-header {
+      margin-bottom: 4rem;
+    }
+
+    .moed-hans-header h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: var(--green-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .moed-hans-header .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .hans-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .hans-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    .hans-photo-block {}
+
+    .hans-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--green-mid);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .hans-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .hans-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, var(--green-mid), var(--green-dark));
+    }
+
+    .hans-photo-placeholder span {
+      font-family: 'Fraunces', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .hans-contact-block {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hans-contact-block strong {
+      display: block;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    .hans-contact-block a {
+      color: var(--green-accent);
+      text-decoration: none;
+    }
+
+    .hans-bio h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.75rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--green-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .hans-bio .title-line {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      margin-bottom: 1.75rem;
+      font-weight: 500;
+    }
+
+    .hans-bio .intro-text {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .hans-bio .intro-text strong {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .hans-bio .personal-note {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--cream);
+      border-radius: 2px;
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--cream-warm);
+    }
+
+    .timeline-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .timeline-item:last-child { border-bottom: none; }
+
+    .tl-year {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding-top: 0.2rem;
+      font-weight: 400;
+    }
+
+    .tl-content {}
+
+    .tl-org {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .tl-role {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .tl-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--green-dark);
+      padding: clamp(4rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      background: var(--white);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--cream);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer .logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── FADE-IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--green-accent);
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">Enlevia</a>
+    <ul class="nav-links">
+      <li><a href="/">Vores service</a></li>
+      <li><a href="/blog.html">Indsigter</a></li>
+      <li><a href="/profile.html" class="active">Om Enlevia</a></li>
+      <li><a href="/#kontakt">Kontakt os</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label fade-up">Om Enlevia</p>
+      <h1 class="fade-up delay-1">Styring der<br><em>matcher virkeligheden</em></h1>
+      <p class="hero-body fade-up delay-2">
+        Vi hjælper ledelser med at træffe beslutninger baseret på værdi — ikke mavefornemmelse.
+        Ikke med store IT-projekter, men ved at gøre den viden I allerede har, læsbar i den styring I allerede har.
+      </p>
+    </div>
+  </section>
+
+  <!-- OM ENLEVIA -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="om-split">
+        <div class="om-split-text fade-up">
+          <p class="section-tag">Om os</p>
+          <h2>Én overbevisning — siden dag ét</h2>
+          <div class="divider"></div>
+          <p>
+            Enlevia er grundlagt med én overbevisning: De fleste organisationer har den viden de har brug for. 
+            Den sidder i systemerne, i medarbejdernes hoveder og i de uformelle samtaler på Teams.
+          </p>
+          <p>
+            Problemet er at den viden aldrig bliver gjort læsbar ved siden af de tal der styrer beslutningerne.
+            Omkostninger flyder automatisk op til ledelsen og bliver sammenlignelige.
+            Værdien forbliver usynlig.
+          </p>
+          <p>
+            Det er det vi hjælper med. Ikke ved at indføre nye systemer — men ved at bygge broer 
+            mellem den viden der allerede eksisterer og den styring der allerede kører.
+          </p>
+        </div>
+        <div class="om-split-image fade-up delay-2">
+          <div class="hans-photo-placeholder">
+            <span>E</span>
+          </div>
+          <p class="image-caption">København · 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TILGANG -->
+  <section class="section tilgang-section">
+    <div class="section-inner">
+      <div class="tilgang-grid">
+        <div class="tilgang-intro fade-up">
+          <p class="section-tag">Vores tilgang</p>
+          <h2>Vi starter med det der faktisk styrer jer</h2>
+          <div class="divider"></div>
+          <p>
+            Vi starter aldrig med at anbefale et system eller en model. 
+            Vi starter med at forstå hvad der reelt styrer organisationen i dag — og hvad der gør det svært at prioritere og eksekvere.
+          </p>
+          <div class="pull-quote">
+            "Et enkelt oversættelsespunkt, valgt rigtigt, skaber mere forandring end et halvt år med konsulentstrategi."
+          </div>
+          <p>
+            Det betyder at vi stiller spørgsmål der er svære at stille indefra. Vi kortlægger hvor viden om omkostning og viden 
+            om værdi lever i separate sprog der aldrig mødes — og vi designer de broer der gør dem læsbare ved siden af hinanden.
+          </p>
+        </div>
+        <div class="tilgang-pillars fade-up delay-2">
+          <div class="pillar">
+            <h3>Kortlægning af styringsrealiteten</h3>
+            <p>Vi identificerer systematisk hvor viden om omkostning og viden om værdi befinder sig i organisationen — og hvad der forhindrer dem i at mødes i beslutningsrummet.</p>
+          </div>
+          <div class="pillar">
+            <h3>Oversættelse frem for måling</h3>
+            <p>Problemet er sjældent at I mangler data. Det er at den viden I har, er fanget i formater der ikke kan tales med jeres styring. Vi oversætter — vi bygger ikke nye systemer.</p>
+          </div>
+          <div class="pillar">
+            <h3>Implementerbart fra dag ét</h3>
+            <p>Vi arbejder med det der faktisk ligger på bordet. Vores forløb er korte, ledelsesnære og designet til at give konkret klarhed — ikke rapporter der samler støv.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MØD HANS -->
+  <section class="section moed-hans-section">
+    <div class="section-inner">
+      <div class="moed-hans-header fade-up">
+        <p class="section-tag">Mød grundlæggeren</p>
+        <h2>Mød Hans</h2>
+        <p class="subtitle">25 år med det samme problem — løst indefra</p>
+      </div>
+
+      <div class="hans-layout">
+        <div class="hans-photo-block fade-up">
+          <div class="hans-photo">
+            <img src="img/HBSN.jpg" alt="Hans Haller Baggesen"
+                 onerror="this.parentElement.innerHTML='<div class=hans-photo-placeholder><span>HB</span></div>'" />
+          </div>
+          <div class="hans-contact-block">
+            <strong>Hans Haller Baggesen</strong>
+            Grundlægger, Enlevia<br>
+            <a href="mailto:info@enlevia.com">info@enlevia.com</a>
+          </div>
+        </div>
+
+        <div class="hans-bio fade-up delay-2">
+          <h3>Hans Haller Baggesen</h3>
+          <p class="title-line">Grundlægger · Enlevia</p>
+
+          <p class="intro-text">
+            Jeg har brugt 25 år på at løse det samme problem — indefra.
+            Ikke som ekstern konsulent der kigger ind, men som den der sidder med ansvaret 
+            når strukturerne skal virke i praksis.
+          </p>
+          <p class="intro-text">
+            Hos <strong>Novo Nordisk</strong> ledede jeg governance-transformation på tværs af Digital, Data & IT 
+            i en global farmaceutisk organisation. Jeg udviklede portfolio- og prioriteringsmodeller der bandt 
+            IT-investeringer direkte til forretningsbehov og fungerede som sparringspartner for VP-ledelser.
+          </p>
+          <p class="intro-text">
+            Hos <strong>TDC NET</strong> byggede jeg det organisatoriske og datamæssige fundament der gjorde det muligt 
+            at eksekvere CO₂-strategi som målbar drift — ikke som en plan der eksisterede på papir.
+          </p>
+          <p class="intro-text">
+            Hver gang stødte jeg på den samme asymmetri: <strong>omkostninger flyder automatisk op til ledelsen 
+            og bliver sammenlignelige. Værdien gemmer sig i Teams-beskeder og i erfaringen hos de folk der aldrig 
+            kommer til orde i budgetmødet.</strong> Nu bygger jeg Enlevia på den indsigt — kombineret med forskning 
+            i hvordan datainfrastruktur former og forvrænger organisatorisk beslutningstagning.
+          </p>
+
+          <div class="personal-note">
+            Uden for arbejdet finder jeg mig selv i feltet med andre cykelsutter på dansk asfalt. 
+            Det har lært mig at holde hovedet koldt når det uventede sker — og at det handler om 
+            at få holdet frem til linjen, ikke om at køre alene stærkt.
+          </div>
+
+          <div class="timeline">
+            <p class="timeline-label">Erfaring</p>
+            <div class="timeline-items">
+              <div class="timeline-item">
+                <span class="tl-year">2025–nu</span>
+                <div class="tl-content">
+                  <p class="tl-org">Enlevia</p>
+                  <p class="tl-role">Grundlægger & Independent Advisor</p>
+                  <p class="tl-desc">Udvikler rådgivningskoncepter inden forværdibaseret styring, governance og AI-understøttet analyse.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tl-year">2021–2025</span>
+                <div class="tl-content">
+                  <p class="tl-org">Novo Nordisk</p>
+                  <p class="tl-role">Transformation Lead – IT Strategy & Transformation</p>
+                  <p class="tl-desc">Ledede governance-transformation på tværs af Digital, Data & IT. Sparringspartner for VP-ledelser i global farmaceutisk organisation.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tl-year">2019–2021</span>
+                <div class="tl-content">
+                  <p class="tl-org">TDC NET</p>
+                  <p class="tl-role">Head of Agile Center of Excellence</p>
+                  <p class="tl-desc">Etablerede styrings- og prioriteringsmodel. Byggede fundament for målbar eksekvering af CO₂-strategi.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tl-year">2016–2019</span>
+                <div class="tl-content">
+                  <p class="tl-org">BEC · Nykredit</p>
+                  <p class="tl-role">Independent Consultant</p>
+                  <p class="tl-desc">Designede governance- og operating models på tværs af platformteams i regulerede finansielle miljøer.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tl-year">2013–2016</span>
+                <div class="tl-content">
+                  <p class="tl-org">Nordea</p>
+                  <p class="tl-role">Chief Agile Coach – Core Banking & Capital Markets</p>
+                  <p class="tl-desc">Tværgående koordinering og governance på tværs af 100+ udviklere og flere lande.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Vil I høre mere om hvordan vi arbejder?</h2>
+    <p>Start med en kort, uforpligtende samtale om jeres situation. Vi finder ud af om et forløb giver mening.</p>
+    <a class="btn-primary" href="mailto:info@enlevia.com?subject=Henvendelse fra Om Enlevia&body=Hej Hans,">Send en e-mail</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="logo" href="/">Enlevia</a>
+    <p>Vi hjælper jer med at træffe beslutninger baseret på værdi — ikke mavefornemmelse.</p>
+    <p>© Enlevia</p>
+  </footer>
+
+</body>
+</html>
