@@ -74,6 +74,43 @@
         gap: 8px;
       }
     }
+
+    .post-body h2 {
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-body h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .post-body ul {
+      margin: 0 0 1.2rem 1.5rem;
+    }
+
+    .post-body ul li {
+      margin-bottom: 0.4rem;
+      line-height: 1.7;
+    }
+
+    .post-body blockquote {
+      border-left: 3px solid var(--accent-primary, #2D5F63);
+      padding: 0.75rem 1.25rem;
+      margin: 1.5rem 0;
+      background: var(--bg-accent, #F7F5F2);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-secondary, #525252);
+      font-style: italic;
+    }
+
+    .post-body blockquote p {
+      margin-bottom: 0.5rem;
+    }
+
+    .post-body blockquote p:last-child {
+      margin-bottom: 0;
+    }
   </style>
 
 </head>
@@ -105,63 +142,80 @@
     <article class="post-body">
       <p>Økonomi kan vise kroner. Salg taler kundeværdi og forventet virksomhedsværdi, men kan ikke bevise forbindelsen mellem dem. Udvikling kan advare om teknisk gæld. Men ingen kan sammenlignes direkte - så når I skal prioritere, vinder den der har de mest præsentable tal.</p>
       <p>Nu skal vi gøre noget ved det. Ikke med et kæmpe IT-projekt. Men ved at starte smart og simpelt.</p>
-      <h3>Start med at gøre det I allerede ved, læsbart</h3>
-      <p><strong>Skridt 1:</strong> Kortlæg hvor viden om værdi allerede findes</p>
+
+      <h2>Start med at gøre det I allerede ved, læsbart</h2>
+      <h3>Skridt 1: Kortlæg hvor viden om værdi allerede findes</h3>
       <p>Næste ledermøde, brug 45 minutter på denne øvelse:</p>
-      <p>1) Tegn tre kolonner på tavlen:</p>
-      <p>&quot;Hvad ved vi om værdi?&quot;</p>
-      <p>&quot;Hvor er den viden?&quot;</p>
-      <p>&quot;I hvilket format?&quot;</p>
+      <p>Tegn tre kolonner på tavlen:</p>
+      <ul>
+        <li>&quot;Hvad ved vi om værdi?&quot;</li>
+        <li>&quot;Hvor er den viden?&quot;</li>
+        <li>&quot;I hvilket format?&quot;</li>
+      </ul>
       <p>Lad hver leder bidrage. Eksempler:</p>
-      <p>&quot;Vi ved at Feature X gør kunderne glade&quot; → &quot;Kundemødenotater og supporthenvendelser&quot; → &quot;Anekdoter og citater&quot;</p>
-      <p>&quot;Vi ved at vores onboarding er for langsom&quot; → &quot;Udviklingsteamets retrospectives&quot; → &quot;Frustrationer i Teams-beskeder&quot;</p>
-      <p>&quot;Vi ved hvilke kunder der er profitable&quot; → &quot;Finanschefens hoved og nogle Excel-ark&quot; → &quot;Udokumenterede beregninger&quot;</p>
+      <ul>
+        <li>&quot;Vi ved at Feature X gør kunderne glade&quot; → &quot;Kundemødenotater og supporthenvendelser&quot; → &quot;Anekdoter og citater&quot;</li>
+        <li>&quot;Vi ved at vores onboarding er for langsom&quot; → &quot;Udviklingsteamets retrospectives&quot; → &quot;Frustrationer i Teams-beskeder&quot;</li>
+        <li>&quot;Vi ved hvilke kunder der er profitable&quot; → &quot;Finanschefens hoved og nogle Excel-ark&quot; → &quot;Udokumenterede beregninger&quot;</li>
+      </ul>
       <p>Det I leder efter er ikke MER data. Det er steder hvor værdifuld viden allerede eksisterer - bare i formater der ikke kan bruges i styringen.</p>
       <p>Efter 45 minutter har I typisk 15-25 punkter på tavlen. Halv-dokumenteret viden der allerede findes i organisationen, men som aldrig kommer i spil når I prioriterer.</p>
       <p>Det er jeres startpunkt.</p>
-      <p><strong>Skridt 2:</strong> Find oversættelsespunkterne</p>
+
+      <h3>Skridt 2: Find oversættelsespunkterne</h3>
       <p>Nu skal I identificere hvor to &quot;sprog&quot; mødes men ikke forstår hinanden. Klassiske eksempler:</p>
-      <p>Mødet mellem aktivitet og omkostning:</p>
+      <h3>Mødet mellem aktivitet og omkostning</h3>
       <p>Udvikling rapporterer &quot;vi byggede 47 features i Q3&quot; og Økonomi ser &quot;udvikling kostede 4,2 mio i Q3&quot; - men der er ingen forbindelse. I ved ikke hvad de 47 features kostede hver især, og I ved ikke hvilken værdi de skabte.</p>
-      <p>Mødet mellem kundetilfredshed og indtjening:</p>
+      <h3>Mødet mellem kundetilfredshed og indtjening</h3>
       <p>Salg ser at Net Promoter Score stiger. Økonomi ser at omsætningen er flad. Begge tal er rigtige - men de taler ikke sammen. Er det fordi NPS ikke betyder noget? Eller fordi effekten kommer senere? I ved det ikke.</p>
-      <p>Mødet mellem teknisk gæld og prioritering:</p>
+      <h3>Mødet mellem teknisk gæld og prioritering</h3>
       <p>Udvikling advarer om at &quot;systemet bliver uoverskueligt&quot; og &quot;vi skal have refactoring-tid&quot;. Ledelsen ser... hvad egentlig? Der er ingen omkostning NU. Konsekvensen er i fremtiden. Hvordan skal det vægtes mod projekter der skaber omsætning NU?</p>
       <p>Find 2-3 af disse møder i jeres virksomhed. Det er her oversættelserne skal bygges.</p>
-      <p><strong>Skridt 3:</strong> Byg én simpel bro først</p>
+
+      <h3>Skridt 3: Byg én simpel bro først</h3>
       <p>Vælg ÉT kritisk beslutningspunkt hvor I konstant kæmper med at sammenligne æbler og pærer.</p>
       <p>For de fleste SMV&#x27;er er det: &quot;Skal vi bygge ny funktionalitet (omsætning nu) eller rydde op i det gamle (reducere fremtidig risiko)?&quot;</p>
       <p>Skab én oversættelse der gør lokal viden læsbar ved siden af omkostning.</p>
-      <p>Et konkret eksempel</p>
+
+      <h2>Et konkret eksempel</h2>
       <p>En af mine klienter havde præcis dette problem: Udvikling ville have tid til at rydde op i &quot;teknisk gæld&quot;, men ledelsen så kun omkostningen (tabt udviklingstid) og ikke gevinsten (reduceret fremtidig risiko).</p>
       <p>Vi lavede en simpel oversættelse. Hver gang udviklingschefen sagde &quot;dette system har teknisk gæld&quot;, skulle han også kunne svare:</p>
-      <p>&quot;Hvor meget langsommere går udvikling i dette system sammenlignet med et &#x27;sundt&#x27; system?&quot;</p>
-      <p>&quot;Hvilke features har vi IKKE kunnet bygge sidste år pga. denne gæld?&quot;</p>
-      <p>&quot;Hvis vi rydder op - hvor meget hurtigere kan vi levere næste år?&quot;</p>
+      <ul>
+        <li>&quot;Hvor meget langsommere går udvikling i dette system sammenlignet med et &#x27;sundt&#x27; system?&quot;</li>
+        <li>&quot;Hvilke features har vi IKKE kunnet bygge sidste år pga. denne gæld?&quot;</li>
+        <li>&quot;Hvis vi rydder op - hvor meget hurtigere kan vi levere næste år?&quot;</li>
+      </ul>
       <p>Pludselig kunne teknisk gæld tales om i samme sprog som økonomi: Tabt kapacitet. Tabte muligheder. Potentiel fremtidig gevinst.</p>
       <p>Det krævede ikke et nyt system. Det krævede bare at udviklingschefen begyndte at oversætte sin viden til et sprog der kunne læses ved siden af økonomichefens tal.</p>
-      <p>Jeres første bro</p>
+
+      <h2>Jeres første bro</h2>
       <p>Vælg ét sted hvor I konstant diskuterer uden at komme videre. Find ud af:</p>
-      <p>Hvad er de to sprog der skal tale sammen? (Typisk: Omkostning møder effekt/risiko/kvalitet)</p>
-      <p>Hvilken viden har I allerede? (I har næsten altid mere end I tror)</p>
-      <p>Hvilken simpel oversættelse gør den viden læsbar? (Ikke perfekt måling - bare god nok til at kunne vægtes mod omkostning)</p>
+      <ul>
+        <li>Hvad er de to sprog der skal tale sammen? Typisk: Omkostning møder effekt, risiko eller kvalitet.</li>
+        <li>Hvilken viden har I allerede? I har næsten altid mere end I tror.</li>
+        <li>Hvilken simpel oversættelse gør den viden læsbar? Ikke perfekt måling - bare god nok til at kunne vægtes mod omkostning.</li>
+      </ul>
       <p>Start småt. Det skal være nyttigt MED DET SAMME, ikke om to år når IT-projektet er færdigt.</p>
-      <p>De tre almindeligste fejl</p>
-      <p>Fejl 1: At ville måle ALT perfekt</p>
+
+      <h2>De tre almindeligste fejl</h2>
+      <h3>Fejl 1: At ville måle ALT perfekt</h3>
       <p>Målet er ikke perfektion. Målet er at gøre usynlig viden synlig nok til at den kan indgå i prioritering. Bedre at have et 80% præcist estimat der faktisk bruges, end en perfekt måling der kommer for sent.</p>
-      <p>Fejl 2: At starte med IT-systemerne</p>
+      <h3>Fejl 2: At starte med IT-systemerne</h3>
       <p>Start med samtalerne. Få folk til at oversætte deres viden til et fælles sprog først. Når oversættelsen virker i praksis, SÅ kan I evt. automatisere den i systemer.</p>
-      <p>Fejl 3: At gøre det til et dataprojekt</p>
+      <h3>Fejl 3: At gøre det til et dataprojekt</h3>
       <p>Dette er et styringsprojekt. Det handler om at træffe bedre beslutninger - ikke om at have flottere dashboards. Hold fokus på beslutningssituationerne, ikke på dataindsamlingen.</p>
-      <p>Fra kaos til klarhed</p>
+
+      <h2>Fra kaos til klarhed</h2>
       <p>Målet er ikke at måle ALT. Målet er at gøre det I allerede ved, læsbart når I skal træffe beslutninger.</p>
       <p>Stop med at bygge flere dashboards med flere målinger. Start med at oversætte den viden I allerede har, til formater der kan tales sammen når I prioriterer.</p>
       <p>For når I kan se både omkostning OG værdi ved siden af hinanden - ikke som konkurrerende sandheder, men som to sider af samme sag - så træffer I bedre beslutninger.</p>
       <p>Ikke fordi I har mere data. Men fordi den data I allerede har, endelig kan tale sammen.</p>
       <p>Start på jeres næste ledermøde:</p>
-      <p>45 minutter: Kortlæg hvor værdi-viden findes</p>
-      <p>Identificer 2-3 oversættelsespunkter</p>
-      <p>Byg én simpel bro</p>
+      <ul>
+        <li>45 minutter: Kortlæg hvor værdi-viden findes.</li>
+        <li>Identificer 2-3 oversættelsespunkter.</li>
+        <li>Byg én simpel bro.</li>
+      </ul>
       <p>Det er alt hvad der skal til for at komme i gang.</p>
     </article>
 

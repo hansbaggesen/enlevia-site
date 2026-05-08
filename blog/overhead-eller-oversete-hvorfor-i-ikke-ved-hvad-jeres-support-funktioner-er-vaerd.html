@@ -74,6 +74,43 @@
         gap: 8px;
       }
     }
+
+    .post-body h2 {
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-body h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .post-body ul {
+      margin: 0 0 1.2rem 1.5rem;
+    }
+
+    .post-body ul li {
+      margin-bottom: 0.4rem;
+      line-height: 1.7;
+    }
+
+    .post-body blockquote {
+      border-left: 3px solid var(--accent-primary, #2D5F63);
+      padding: 0.75rem 1.25rem;
+      margin: 1.5rem 0;
+      background: var(--bg-accent, #F7F5F2);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-secondary, #525252);
+      font-style: italic;
+    }
+
+    .post-body blockquote p {
+      margin-bottom: 0.5rem;
+    }
+
+    .post-body blockquote p:last-child {
+      margin-bottom: 0;
+    }
   </style>
 
 </head>
@@ -108,75 +145,113 @@
       <p>Men her er det interessante: Hvorfor fyrer I ikke bare dem alle sammen?</p>
       <p>Det gør I selvfølgelig ikke. For I ved godt de skaber værdi. I kan bare ikke bevise det - kun omkostningen.</p>
       <p>Og det er præcis problemet.</p>
-      <p>Direct value vs. enabling value</p>
+
+      <h2>Direct value vs. enabling value</h2>
       <p>Der er to fundamentalt forskellige måder at skabe værdi på:</p>
-      <p>Direct value - direkte værdiskabelse: Sælgeren lukker en handel → Produktionsmedarbejderen bygger produktet → Kunden betaler.</p>
+      <p><strong>Direct value</strong> - direkte værdiskabelse:</p>
+      <ul>
+        <li>Sælgeren lukker en handel.</li>
+        <li>Produktionsmedarbejderen bygger produktet.</li>
+        <li>Kunden betaler.</li>
+      </ul>
       <p>Forbindelsen er synlig. Det kan I måle. Det står i jeres systemer.</p>
-      <p>Enabling value - muliggørende værdiskabelse: Bodil sørger for at fakturaer sendes korrekt. Hanne sørger for at systemer kører. HR finder dygtige medarbejdere.</p>
+      <p><strong>Enabling value</strong> - muliggørende værdiskabelse:</p>
+      <ul>
+        <li>Bodil sørger for at fakturaer sendes korrekt.</li>
+        <li>Hanne sørger for at systemer kører.</li>
+        <li>HR finder dygtige medarbejdere.</li>
+      </ul>
       <p>De laver ikke produktet. Men de gør at andre kan lave det hurtigere, bedre, med færre fejl.</p>
       <p>Det er en multiplikator-effekt:</p>
-      <p>God IT-support → 20% færre afbrydelser → produktionen leverer mere</p>
-      <p>God økonomimedarbejder → færre fejl → ingen forsinkede betalinger</p>
-      <p>God HR → bedre rekruttering → lavere turnover → mindre tid på oplæring</p>
+      <ul>
+        <li>God IT-support → 20% færre afbrydelser → produktionen leverer mere.</li>
+        <li>God økonomimedarbejder → færre fejl → ingen forsinkede betalinger.</li>
+        <li>God HR → bedre rekruttering → lavere turnover → mindre tid på oplæring.</li>
+      </ul>
       <p>Men den multiplikator indskrives aldrig.</p>
       <p>Jeres systemer viser kun omkostningen:</p>
-      <p>Bodils løn: 600.000 kr</p>
-      <p>Hannes afdeling: 2,8 mio</p>
+      <ul>
+        <li>Bodils løn: 600.000 kr.</li>
+        <li>Hannes afdeling: 2,8 mio.</li>
+      </ul>
       <p>De viser IKKE:</p>
-      <p>Hvor mange timer sparer Bodil andre for?</p>
-      <p>Hvad er cost of delay når systemer er nede?</p>
-      <p>Hvad koster 10% højere turnover?</p>
+      <ul>
+        <li>Hvor mange timer sparer Bodil andre for?</li>
+        <li>Hvad er cost of delay når systemer er nede?</li>
+        <li>Hvad koster 10% højere turnover?</li>
+      </ul>
       <p>Så når I skal skære, opererer I på mavefornemmelse: &quot;Vi skal nok have NOGEN til det... men måske ikke så mange?&quot;</p>
       <p>Beslutninger om millioner baseret på gætværk.</p>
-      <p>Konsekvenserne af blind nedskæring</p>
-      <p>Måned 1-3: Det ser fint ud. Omkostningerne falder. Tingene kører stadig.</p>
-      <p>Måned 4-6: Mindre ting tager længere tid. Folk venter på IT-support. Flere fejl. Men intet dramatisk.</p>
-      <p>Måned 6-12: Kritisk medarbejder siger op uden backup. Stor fejl i regnskabet. System crasher i dagevis.</p>
-      <p>Måned 12+: Panik-rekruttering til højere løn. Mistet momentum, kunderelationer, medarbejdertillid.</p>
-      <p>Lyder det bekendt?</p>
+
+      <h2>Konsekvenserne af blind nedskæring</h2>
+      <h3>Måned 1-3: Det ser fint ud</h3>
+      <p>Omkostningerne falder. Tingene kører stadig.</p>
+      <h3>Måned 4-6: Sprækkerne viser sig</h3>
+      <p>Mindre ting tager længere tid. Folk venter på IT-support. Flere fejl. Men intet dramatisk.</p>
+      <h3>Måned 6-12: Systemet bliver sårbart</h3>
+      <p>Kritisk medarbejder siger op uden backup. Stor fejl i regnskabet. System crasher i dagevis.</p>
+      <h3>Måned 12+: Panik-rekruttering</h3>
+      <p>I hyrer tilbage til højere løn og har mistet momentum, kunderelationer og medarbejdertillid.</p>
+
+      <h2>Lyder det bekendt?</h2>
       <p>Det sker fordi I optimerede på synlige omkostninger uden at kunne se de usynlige konsekvenser.</p>
-      <p>Hvad skal I gøre i stedet?</p>
-      <p>1. Identificer hvad de faktisk gør</p>
+
+      <h2>Hvad skal I gøre i stedet?</h2>
+      <h3>1. Identificer hvad de faktisk gør</h3>
       <p>Tag Bodil fra Økonomi. 30 minutters samtale:</p>
       <p>Hvad laver du konkret? Hvem hjælper du?</p>
-      <p>Sikrer fakturaer sendes til tiden</p>
-      <p>Håndterer komplekse finansielle processer</p>
-      <p>Produktionschefen får data han stoler på</p>
-      <p>Salgschefen kan træffe beslutninger om priser</p>
-      <p>CEO kan rapportere korrekt til bestyrelsen</p>
+      <ul>
+        <li>Sikrer fakturaer sendes til tiden.</li>
+        <li>Håndterer komplekse finansielle processer.</li>
+        <li>Produktionschefen får data han stoler på.</li>
+        <li>Salgschefen kan træffe beslutninger om priser.</li>
+        <li>CEO kan rapportere korrekt til bestyrelsen.</li>
+      </ul>
       <p>Pludselig ser I: Bodil er grunden til at tre andre ledere kan gøre deres arbejde effektivt.</p>
-      <p>2. Estimér multiplikator-effekten</p>
+      <h3>2. Estimér multiplikator-effekten</h3>
       <p>Spørg de folk Bodil hjælper:</p>
-      <p>&quot;Hvor meget tid sparer Bodil dig hver uge?&quot;</p>
-      <p>&quot;Hvad ville ske hvis hun ikke var her?&quot;</p>
-      <p>&quot;Kan du sætte tal på konsekvensen af de fejl hun undgår?&quot;</p>
+      <ul>
+        <li>&quot;Hvor meget tid sparer Bodil dig hver uge?&quot;</li>
+        <li>&quot;Hvad ville ske hvis hun ikke var her?&quot;</li>
+        <li>&quot;Kan du sætte tal på konsekvensen af de fejl hun undgår?&quot;</li>
+      </ul>
       <p>Eksempel fra en af mine klienter:</p>
-      <p>IT-support kostede 1,2 mio om året</p>
-      <p>God IT-support sparede 15-20 timers nedetid om måneden</p>
-      <p>20 timer × 30 medarbejdere × 500 kr/time × 12 måneder = 3,6 mio undgået tabt produktivitet</p>
-      <p>ROI på IT-support: 3:1</p>
+      <ul>
+        <li>IT-support kostede 1,2 mio om året.</li>
+        <li>God IT-support sparede 15-20 timers nedetid om måneden.</li>
+        <li>20 timer × 30 medarbejdere × 500 kr/time × 12 måneder = 3,6 mio undgået tabt produktivitet.</li>
+        <li>ROI på IT-support: 3:1.</li>
+      </ul>
       <p>De havde dataen - de havde bare aldrig sat den sammen før.</p>
-      <p>3. Synliggør cost of absence</p>
+      <h3>3. Synliggør cost of absence</h3>
       <p>Hvad ville det koste hvis Bodil/Hanne ikke var der?</p>
-      <p>Hvad koster en dag hvor systemer er nede?</p>
-      <p>Hvad koster fejl i finansiel rapportering?</p>
-      <p>Hvad koster ekstra tid andre skal bruge på opgaver de ikke er trænet til?</p>
+      <ul>
+        <li>Hvad koster en dag hvor systemer er nede?</li>
+        <li>Hvad koster fejl i finansiel rapportering?</li>
+        <li>Hvad koster ekstra tid andre skal bruge på opgaver de ikke er trænet til?</li>
+      </ul>
       <p>Det skal ikke være perfekt. Det skal bare være synligt ved siden af omkostningen når I træffer beslutninger.</p>
-      <p>Fra omkostningsfokus til værdifokus</p>
+
+      <h2>Fra omkostningsfokus til værdifokus</h2>
       <p>Næste gang nedskæringer er på dagsordenen:</p>
-      <p>I stedet for: &quot;Hvad koster denne funktion?&quot;Spørg: &quot;Hvad ville det koste at IKKE have denne funktion?&quot;</p>
-      <p>I stedet for: &quot;Kan vi klare os med færre?&quot;Spørg: &quot;Hvad er den optimale størrelse baseret på den værdi de skaber?&quot;</p>
-      <p>I stedet for: &quot;De producerer ikke noget kunden betaler for&quot;Spørg: &quot;Hvor meget hurtigere/bedre kan produktionen arbejde fordi de er her?&quot;</p>
-      <p>Konklusion: Oversete, ikke overhead</p>
+      <ul>
+        <li>I stedet for: &quot;Hvad koster denne funktion?&quot; Spørg: &quot;Hvad ville det koste at IKKE have denne funktion?&quot;</li>
+        <li>I stedet for: &quot;Kan vi klare os med færre?&quot; Spørg: &quot;Hvad er den optimale størrelse baseret på den værdi de skaber?&quot;</li>
+        <li>I stedet for: &quot;De producerer ikke noget kunden betaler for&quot; Spørg: &quot;Hvor meget hurtigere/bedre kan produktionen arbejde fordi de er her?&quot;</li>
+      </ul>
+
+      <h2>Konklusion: Oversete, ikke overhead</h2>
       <p>Support-funktioner er kun &quot;overhead&quot; hvis I kun kigger på omkostningssiden.</p>
       <p>Bodil er ikke 600.000 kr i omkostning. Hun er grunden til at produktionschefen, salgschefen og CEO kan træffe bedre beslutninger hurtigere.</p>
       <p>Hanne er ikke 2,8 mio i omkostning. Hun er forskellen mellem 95% uptime og 80% uptime - og den forskel kan I sætte kroner på.</p>
       <p>De er ikke overhead. De er fundamentet.</p>
       <p>Næste gang I overvejer nedskæringer i &quot;administrationen&quot;:</p>
-      <p>Identificér hvad de faktisk gør (30 min)</p>
-      <p>Estimér multiplikator-effekten (spørg dem de hjælper)</p>
-      <p>Beregn cost of absence</p>
-      <p>Træf beslutning baseret på både omkostning OG værdi</p>
+      <ul>
+        <li>Identificér hvad de faktisk gør (30 min).</li>
+        <li>Estimér multiplikator-effekten (spørg dem de hjælper).</li>
+        <li>Beregn cost of absence.</li>
+        <li>Træf beslutning baseret på både omkostning OG værdi.</li>
+      </ul>
       <p>Det tager 2-3 timer. Det kan spare jer for millioner i forkerte nedskæringer.</p>
     </article>
 
