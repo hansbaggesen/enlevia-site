@@ -1,4 +1,4 @@
-# Enlevia — www.enlevia.com
+# Enlevia — <www.enlevia.com>
 
 Statisk hjemmeside for **Enlevia**, Hans Baggesens danske datakonsulentvirksomhed.
 
@@ -9,7 +9,7 @@ Ren HTML/CSS/JavaScript — ingen byggeproces, ingen pakkemanager, ingen framewo
 ## Sider
 
 | Fil | URL | Indhold |
-|-----|-----|---------|
+| ----- | ----- | --------- |
 | `index.html` | `/` | Forside (hero, services, kontakt) |
 | `blog.html` | `/blog.html` | Artikeloversigt |
 | `blog/*.html` | `/blog/<slug>.html` | Individuelle blogartikler |
@@ -17,7 +17,8 @@ Ren HTML/CSS/JavaScript — ingen byggeproces, ingen pakkemanager, ingen framewo
 
 ## Mappestruktur
 
-```
+``` text
+
 enlevia-site/
 ├── blog/               # Blogartikler (.html + .docx kildefiler)
 ├── css/
