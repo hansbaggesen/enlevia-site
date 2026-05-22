@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Priser og forløb | Enlevia</title>
+  <meta name="description" content="Kortlægning, sparring og workshop – forløb til ledere, der vil have styringsmodeller og eksekvering til at hænge sammen. Se priser.">
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="https://www.enlevia.com/priser.html" />
+
+  <meta property="og:title" content="Priser og forløb | Enlevia" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.enlevia.com/priser.html" />
+  <meta property="og:description" content="Forløb til ledere, der vil styringsmodeller og eksekvering til at hænge sammen." />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <style>
+    /* ── SECTIONS ── */
+    .section {
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .section-warm { background: var(--cream-warm); }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--green-accent);
+      margin: 1.5rem 0 2.5rem;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      color: var(--text-mid);
+      max-width: 680px;
+      line-height: 1.75;
+    }
+
+    /* ── INTRO ── */
+    .intro-text {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 62ch;
+      margin-bottom: 0.9rem;
+    }
+
+    /* ── PRICING GRID ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      align-items: start;
+    }
+
+    /* Standard pricing card */
+    .pricing-card {
+      padding: 2.25rem 2rem;
+      background: var(--white);
+      border-radius: 2px;
+      border-top: 3px solid var(--green-accent);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Featured card */
+    .pricing-card--featured {
+      background: var(--green-dark);
+      border-top-color: var(--green-light);
+    }
+
+    .pricing-card--featured .card-tag,
+    .pricing-card--featured .card-title,
+    .pricing-card--featured .card-desc,
+    .pricing-card--featured .card-meta dt,
+    .pricing-card--featured .card-meta dd,
+    .pricing-card--featured .card-price,
+    .pricing-card--featured .card-price-note {
+      color: var(--white);
+    }
+
+    .pricing-card--featured .card-tag {
+      color: var(--green-light);
+    }
+
+    .pricing-card--featured .card-meta dt {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .pricing-card--featured .card-meta dd {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .pricing-card--featured .card-divider {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .pricing-card--featured .card-price {
+      color: var(--white);
+    }
+
+    .pricing-card--featured .card-price-note {
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Badge */
+    .card-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: var(--green-light);
+      color: var(--white);
+      padding: 0.25rem 0.65rem;
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+      align-self: flex-start;
+    }
+
+    /* Card internals */
+    .card-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-accent);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--green-dark);
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(0,0,0,0.07);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Meta list (Format / Indhold / Output) */
+    .card-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.35rem 1rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.85rem;
+    }
+
+    .card-meta dt {
+      color: var(--text-muted);
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .card-meta dd {
+      color: var(--text-dark);
+      font-weight: 300;
+    }
+
+    /* Price */
+    .card-price {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      color: var(--green-dark);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-price-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── SUPPLEMENT CARD (Implementeringsstøtte) ── */
+    .supplement-card {
+      margin-top: 0;
+      padding: 1.75rem 2rem;
+      background: var(--cream-warm);
+      border-radius: 2px;
+      border-left: 3px solid var(--green-accent);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 3rem;
+      align-items: flex-start;
+    }
+
+    .supplement-card .card-title {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .supplement-card .card-desc {
+      font-size: 0.88rem;
+      margin-bottom: 0;
+      max-width: 52ch;
+      flex-grow: 1;
+      flex-basis: 280px;
+    }
+
+    .supplement-right {
+      flex-shrink: 0;
+    }
+
+    .supplement-right .card-price {
+      font-size: 1.25rem;
+    }
+
+    /* ── TRANSPARENCY NOTE ── */
+    .note-box {
+      margin-top: 3.5rem;
+      padding: 1.5rem 2rem;
+      background: var(--white);
+      border-radius: 2px;
+      border-left: 3px solid var(--green-accent);
+      max-width: 680px;
+    }
+
+    .note-box h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--green-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .note-box p {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ── CTA ── */
+    .cta-section h2 { max-width: 600px; }
+    .cta-section p  { max-width: 480px; }
+    .cta-section .note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="/">Enlevia</a>
+    <button type="button" class="nav-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">Vores service</a></li>
+      <li><a href="/blog.html">Indsigter</a></li>
+      <li><a href="/profile.html">Om Enlevia</a></li>
+      <li><a href="/priser.html" class="active">Priser</a></li>
+      <li><a href="/#kontakt">Kontakt os</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label fade-up">Forløb</p>
+      <h1 class="fade-up delay-1">Priser på<br>forløb og sparring</h1>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section section-warm">
+    <div class="section-inner">
+      <p class="section-tag fade-up">Om priserne</p>
+      <h2 class="fade-up">Transparente priser.<br>Ingen overraskelser.</h2>
+      <div class="divider fade-up"></div>
+      <p class="intro-text fade-up">
+        Alle forløb er fastpris. Det betyder, at vi aftaler scope og pris på forhånd –
+        og at I ikke modtager en faktura, I ikke har set komme.
+      </p>
+      <p class="intro-text fade-up delay-1">
+        Indgangen til et samarbejde er altid en kort, uforpligtende samtale om jeres situation.
+        Vi finder ud af, om et forløb giver mening – og i så fald hvilken indgang der passer bedst.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRICING CARDS -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-tag fade-up">Forløb og priser</p>
+      <h2 class="fade-up">Vælg jeres indgang</h2>
+      <div class="divider fade-up"></div>
+
+      <div class="pricing-grid">
+
+        <!-- Beslutningsworkshop -->
+        <article class="pricing-card fade-up">
+          <p class="card-tag">Workshop</p>
+          <h3 class="card-title">Beslutningsworkshop</h3>
+          <p class="card-desc">
+            En fokuseret dag for ledergrupper, der skal skabe fælles overblik over, hvor værdi
+            tabes, forsinkes eller bliver uklar i styring og eksekvering. Passer godt som første
+            skridt, hvis I vil mærke arbejdsmåden, inden I forpligter jer til et længere forløb.
+          </p>
+          <div class="card-divider"></div>
+          <dl class="card-meta">
+            <dt>Format</dt>
+            <dd>1 dag</dd>
+            <dt>Indhold</dt>
+            <dd>Struktureret gruppearbejde og sparring</dd>
+            <dt>Output</dt>
+            <dd>Fælles problemforståelse og anbefalet næste skridt</dd>
+          </dl>
+          <p class="card-price">35.000 kr.</p>
+          <p class="card-price-note">ekskl. moms · fastpris</p>
+        </article>
+
+        <!-- Kortlægning – FEATURED -->
+        <article class="pricing-card pricing-card--featured fade-up delay-1">
+          <span class="card-badge">Anbefalet indgang</span>
+          <p class="card-tag">Kortlægning</p>
+          <h3 class="card-title">Hvad styrer jer – egentlig?</h3>
+          <p class="card-desc">
+            Kortlægger de målinger, strukturer og processer, der reelt former jeres
+            beslutninger og eksekvering – uanset hvad strategien siger. Forløbet er
+            ledelsesnært og kortvarigt, men skaber et fælles billede, som giver fundamentet
+            for alt det efterfølgende arbejde.
+          </p>
+          <div class="card-divider"></div>
+          <dl class="card-meta">
+            <dt>Format</dt>
+            <dd>2–4 uger</dd>
+            <dt>Indhold</dt>
+            <dd>5–10 samtaler med nøgleledere og analyse</dd>
+            <dt>Output</dt>
+            <dd>Konkret rapport med anbefalinger</dd>
+          </dl>
+          <p class="card-price">Fra 65.000 kr.</p>
+          <p class="card-price-note">ekskl. moms · fastpris · afhænger af organisationens størrelse</p>
+        </article>
+
+        <!-- Ledelsessparring -->
+        <article class="pricing-card fade-up delay-2">
+          <p class="card-tag">Sparring</p>
+          <h3 class="card-title">Ledelsessparring om eksekvering</h3>
+          <p class="card-desc">
+            Fortrolig sparring til ledere, der står med komplekse beslutninger, prioriteringer
+            eller organisatoriske forandringer. Vi arbejder med det, der faktisk ligger på bordet –
+            ikke det, der burde være der.
+          </p>
+          <div class="card-divider"></div>
+          <dl class="card-meta">
+            <dt>Format</dt>
+            <dd>3–6 sessioner</dd>
+            <dt>Indhold</dt>
+            <dd>Struktureret sparring på konkrete beslutninger</dd>
+            <dt>Output</dt>
+            <dd>Klarhed og handlingsplan for den konkrete situation</dd>
+          </dl>
+          <p class="card-price">Fra 25.000 kr.</p>
+          <p class="card-price-note">ekskl. moms · fastpris pr. forløb</p>
+        </article>
+
+      </div>
+
+      <!-- Implementeringsstøtte -->
+      <div class="supplement-card fade-up">
+        <div>
+          <h3 class="card-title">Implementeringsstøtte</h3>
+          <p class="card-desc">
+            Har I brug for løbende sparring og hjælp til at omsætte kortlægningen til konkret
+            forandring? Implementeringsstøtte aftales individuelt og faktureres pr. dag.
+          </p>
+        </div>
+        <div class="supplement-right">
+          <p class="card-price">Fra 18.000 kr. / dag</p>
+          <p class="card-price-note">ekskl. moms · efter aftale</p>
+        </div>
+      </div>
+
+      <!-- Transparency note -->
+      <div class="note-box fade-up">
+        <h3>Hvad er inkluderet?</h3>
+        <p>
+          Alle fastpriser dækker forberedelse, gennemførelse og rapport- eller
+          sessionsdokumentation. Eventuelle rejseomkostninger uden for storkøbenhavn
+          aftales separat. Der er ingen skjulte timer – kun den aftalte leverance.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Lad os tage en uforpligtende snak</h2>
+    <p>
+      Er I usikre på, hvilken indgang der passer bedst? Her afklarer vi, om et forløb
+      giver mening — og hvilken indgang der passer bedst.
+    </p>
+    <a class="btn-primary"
+       href="mailto:info@enlevia.com?subject=Sp%C3%B8rgsm%C3%A5l%20om%20forløb%20og%20priser&body=Hej%20Hans,%0D%0A%0D%0AJeg%20vil%20gerne%20høre%20mere%20om..."
+       aria-label="Send e-mail til Enlevia">
+      Send en e-mail
+    </a>
+    <p class="note">Jeg vender typisk tilbage inden for 24 timer.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a class="logo" href="/">Enlevia</a>
+    <p>Vi hjælper jer med at gøre værdi tydelig nok til at kunne styre, prioritere og handle på den.</p>
+    <p>© <span id="year"></span> Enlevia</p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
