@@ -1,0 +1,194 @@
+﻿<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Real-time Operating Model | Enlevia</title>
+  <meta name="description" content="De fleste operating models er snapshots. Hvad hvis en operating model i stedet var et levende billede af organisationen?" />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="https://www.enlevia.com/blog/real-time-operating-model.html" />
+
+  <meta property="og:title" content="Real-time Operating Model | Enlevia" />
+  <meta property="og:description" content="De fleste operating models er snapshots. Hvad hvis en operating model i stedet var et levende billede af organisationen?" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.enlevia.com/blog/real-time-operating-model.html" />
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/style-v2.css">
+  <style>
+.post-hero {
+      padding: 72px 0 40px;
+      border-bottom: 1px solid var(--border, #e8e4dc);
+    }
+
+    .post-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text-primary, #1a1a1a);
+    }
+
+    .post-hero .lead {
+      color: var(--text-secondary, #666);
+      max-width: 60ch;
+    }
+
+    .post-body {
+      padding: 48px 0 72px;
+      max-width: 68ch;
+    }
+
+    .post-body p {
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+      color: var(--text-primary, #1a1a1a);
+    }
+
+    .post-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .post-cta {
+      padding: 40px 0 80px;
+      border-top: 1px solid var(--border, #e8e4dc);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .post-cta p {
+      color: var(--text-secondary, #666);
+      max-width: 48ch;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .post-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+
+    .post-body h2 {
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-body h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .post-body ul {
+      margin: 0 0 1.2rem 1.5rem;
+    }
+
+    .post-body ul li {
+      margin-bottom: 0.4rem;
+      line-height: 1.7;
+    }
+
+    .post-body blockquote {
+      border-left: 3px solid var(--accent-primary, #2D5F63);
+      padding: 0.75rem 1.25rem;
+      margin: 1.5rem 0;
+      background: var(--bg-accent, #F7F5F2);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-secondary, #525252);
+      font-style: italic;
+    }
+
+    .post-body blockquote p {
+      margin-bottom: 0.5rem;
+    }
+
+    .post-body blockquote p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+
+</head>
+
+<body>
+<nav>
+  <a class="nav-logo" href="/">Enlevia</a>
+  <button type="button" class="nav-toggle" aria-label="Åbn menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/">Vores service</a></li>
+    <li><a href="/blog.html" class="active">Indsigter</a></li>
+    <li><a href="/profile.html">Om Enlevia</a></li>
+    <li><a href="/#kontakt">Kontakt os</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+
+  <header class="post-hero">
+    <div class="eyebrow">Indsigter</div>
+    <h1>Real-time Operating Model</h1>
+    <p class="lead">Fra statisk snapshot til organisatorisk observability</p>
+  </header>
+
+  <main>
+    <article class="post-body">
+      <p>De fleste operating models er snapshots.</p>
+      <p>Vi tegner organisationen, beskriver roller og ansvar, definerer governance og gemmer resultatet i PowerPoint. Seks måneder senere har virkeligheden flyttet sig. Nye mennesker er kommet til, systemer er ændret, nye capabilities er opstået, og AI-agenter er begyndt at løse arbejde, som ikke eksisterede, da modellen blev tegnet.</p>
+      <p>Hvad hvis en operating model i stedet var et levende billede af organisationen?</p>
+      <p>En <strong>Real-time Operating Model</strong>.</p>
+      <p>Tanken er ikke, at hele organisationen skal presses ind i ét centralt system. Tværtimod. De lokale systemer og faglige &quot;sprogstammer&quot; skal fortsat eksistere. Men de skal kunne gøre centrale dele af sig selv læsbare på tværs.</p>
+      <p>Her kan Team API være et interessant udgangspunkt.</p>
+      <p>En klassisk Team API beskriver eksempelvis et teams ansvar, services, prioriteringer og hvordan andre teams kan interagere med det. Men forestil dig en udvidet version, hvor hvert organisatorisk område løbende gør sine <strong>capabilities</strong> synlige:</p>
+      <ul>
+        <li>Hvad kan vi?</li>
+        <li>Hvilken kapacitet har vi?</li>
+        <li>Hvilke data har vi adgang til?</li>
+        <li>Hvilke beslutninger må vi tage?</li>
+        <li>Hvilke services tilbyder vi?</li>
+        <li>Hvilke afhængigheder har vi?</li>
+        <li>Og hvilke mennesker og AI-agenter udfører arbejdet?</li>
+      </ul>
+      <p>Pludselig bliver organisationsdiagrammet mindre interessant.</p>
+      <p>For organisationen kan nu spørges.</p>
+      <p>Forestil dig, at virksomheden vil lancere et nyt produkt.</p>
+      <p>I stedet for først at etablere et projekt og derefter bruge uger på at finde de relevante mennesker, kompetencer, data, systemer og beslutningstagere, kunne man spørge organisationens operating model:</p>
+      <blockquote>
+        <p>Hvilke capabilities har vi allerede, der kan bringe dette produkt fra idé til marked? Hvor mangler vi kapacitet? Hvilke teams har lignende løsninger? Hvilke regulatoriske afhængigheder findes? Hvor ligger flaskehalsene?</p>
+      </blockquote>
+      <p>Det er her AI bliver interessant.</p>
+      <p>Ikke som endnu en chatbot oven på organisationen, men som et lag, der kan læse forbindelserne mellem mennesker, teams, teknologi og værdi.</p>
+      <p>En Real-time Operating Model bliver dermed ikke bare en beskrivelse af organisationen.</p>
+      <p>Den bliver en form for <strong>organisatorisk observability</strong>.</p>
+      <p>Et levende kort over, hvad virksomheden faktisk kan &mdash; og hvor værdien kan skabes næste gang.</p>
+    </article>
+
+    <div class="post-cta">
+      <p>
+        Vil I dr&oslash;fte en konkret udfordring? Tag en uforpligtende snak.
+      </p>
+      <a class="btn btn-primary"
+         href="mailto:info@enlevia.com?subject=Henvendelse%20fra%20Enlevia%20blog&body=Hej%20Hans,%0D%0A%0D%0A"
+         aria-label="Send e-mail til Enlevia">
+        Kontakt Hans
+      </a>
+    </div>
+  </main>
+
+</div>
+
+<footer>
+  <a class="logo" href="/">Enlevia</a>
+  <p>&copy; <span id="year"></span> Enlevia</p>
+</footer>
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>
