@@ -1,0 +1,309 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>RTOM aktør-netværk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: kort til venstre (inskriptioner øverst og nederst, teams i midten, tavse til højre), profilpanel til højre; stables på mobil */
+:root{
+  --bg:#f5f6f7; --surface:#ffffff; --fg:#1d2329; --muted:#5d6872; --line:#d5dade; --faint:#e7eaed;
+  --self:#5b4fc4; --self-tint:#ecebfb; --harv:#0f7a63; --harv-tint:#e1f3ed; --spokes:#c4532a; --spokes-tint:#fbe9e1;
+  --team:#3c4650; --team-fill:#e9ecef; --quiet:#8a949c;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14181c; --surface:#1c2227; --fg:#e6eaee; --muted:#9aa5ae; --line:#323b43; --faint:#262e35;
+  --self:#a59cf2; --self-tint:#2a2650; --harv:#4fc7a6; --harv-tint:#14382f; --spokes:#f08a62; --spokes-tint:#43251a;
+  --team:#cdd5dc; --team-fill:#2b343b; --quiet:#6f7a83; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14181c; --surface:#1c2227; --fg:#e6eaee; --muted:#9aa5ae; --line:#323b43; --faint:#262e35;
+  --self:#a59cf2; --self-tint:#2a2650; --harv:#4fc7a6; --harv-tint:#14382f; --spokes:#f08a62; --spokes-tint:#43251a;
+  --team:#cdd5dc; --team-fill:#2b343b; --quiet:#6f7a83; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 var(--body)}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:20px;padding-block:20px 32px;display:grid;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px}
+h1{font:600 clamp(24px,3vw,32px)/1.1 var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.meta{font:12px/1.4 var(--mono);color:var(--muted);margin-top:6px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.seg button{font:500 13px var(--body);color:var(--muted);background:none;border:0;padding:7px 12px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.seg button:focus-visible,.team:focus-visible{outline:2px solid var(--spokes);outline-offset:2px}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:18px;align-items:start}
+@media (max-width:1000px){.main{grid-template-columns:minmax(0,1fr)}}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+svg{display:block;width:100%;min-width:760px;height:auto}
+svg text{font-family:var(--body);fill:var(--fg)}
+.ins rect{stroke-width:1}
+.ins .t{font:600 15px var(--display)}
+.ins .s{font:12px var(--body);fill:var(--muted)}
+.edge{fill:none;transition:opacity .15s,stroke-width .15s}
+.team{cursor:pointer}
+.team circle{fill:var(--team-fill);stroke:var(--team);stroke-width:1;transition:fill .15s}
+.team text{font:500 12px var(--display);fill:var(--muted);text-anchor:middle}
+.team.sel circle{fill:var(--spokes-tint);stroke:var(--spokes);stroke-width:2}
+.team.sel text,.team:hover text{fill:var(--fg)}
+.quiet circle{fill:none;stroke:var(--quiet);stroke-dasharray:2 2}
+.quiet text{text-anchor:start}
+.zone{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;fill:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12.5px;color:var(--muted);padding:10px 14px;border-top:1px solid var(--line)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:2px;border:1px solid}
+aside{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;gap:16px;min-width:0}
+aside h2{font:600 22px/1.15 var(--display);margin:0}
+.kind{font:500 11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.mission{color:var(--muted);margin:4px 0 0;font-size:14px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.col{border-radius:6px;padding:10px 12px;display:grid;gap:4px;align-content:start}
+.col.self{background:var(--self-tint)} .col.harv{background:var(--harv-tint)}
+.col h3{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px}
+.col.self h3{color:var(--self)} .col.harv h3{color:var(--harv)}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:13px;white-space:nowrap}
+.kv b{font:500 13px var(--mono);font-variant-numeric:tabular-nums}
+.note{font-size:13px;border-left:3px solid var(--quiet);padding:6px 10px;color:var(--muted);border-radius:0}
+.sec h3{font:600 11px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13px}
+.list li{display:flex;justify-content:space-between;gap:10px;min-width:0}
+.list .p{font-family:var(--mono);font-size:12px;overflow-wrap:anywhere;min-width:0}
+.list .n{font:500 12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.list button{all:unset;cursor:pointer;color:var(--fg);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.list button:focus-visible{outline:2px solid var(--spokes)}
+a{color:var(--self)} .prs a{color:var(--fg)}
+.foot{font-size:12.5px;color:var(--muted);max-width:75ch}
+@media (prefers-reduced-motion:reduce){.edge,.team circle{transition:none}}
+[hidden]{display:none!important}
+.om{display:grid;gap:8px;padding:16px}
+.layer{display:grid;grid-template-columns:130px minmax(0,1fr);gap:12px;align-items:stretch}
+.lname{display:grid;align-content:center;gap:2px;border-right:2px solid var(--line);padding-right:10px}
+.lname b{font:600 15px var(--display)} .lname span{font-size:12px;color:var(--muted)}
+.lbody{min-width:0}
+.cells4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.cell{border:1px solid var(--line);border-radius:6px;padding:9px 12px;display:grid;gap:6px;align-content:start;background:var(--surface);min-width:0}
+.cell>b{font:600 14px var(--display)} .cell>span{font-size:13px;color:var(--muted)}
+.cell.self{background:var(--self-tint);border-color:var(--self)} .cell.harv{background:var(--harv-tint);border-color:var(--harv)}
+.cell.none{border-style:dashed;border-color:var(--quiet);background:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 12.5px var(--display);color:var(--fg);background:var(--team-fill);border:1px solid var(--line);border-radius:999px;padding:3px 9px;cursor:pointer}
+.chip b{font:500 11.5px var(--mono);color:var(--harv);font-variant-numeric:tabular-nums}
+.chip.zero{background:transparent;border-style:dashed;border-color:var(--quiet)} .chip.zero b{color:var(--quiet)}
+.chip.sel{border-color:var(--spokes);background:var(--spokes-tint)}
+.chip:focus-visible{outline:2px solid var(--spokes);outline-offset:2px}
+@media (max-width:600px){.layer{grid-template-columns:minmax(0,1fr)}.lname{border-right:0;border-bottom:2px solid var(--line);padding:0 0 4px}}
+</style>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Kubernetes som aktør-netværk</h1>
+    <div class="meta" id="meta"></div>
+  </div>
+  <div class="seg" role="group" aria-label="Visning">
+    <button id="m-ins" aria-pressed="true">Inskriptioner</button>
+    <button id="m-pr" aria-pressed="false">Delte PRs</button>
+    <button id="m-kep" aria-pressed="false">Delte KEPs</button>
+    <button id="m-om" aria-pressed="false">Operating model</button>
+  </div>
+</header>
+<div class="main">
+  <div class="mapbox">
+    <svg id="map" viewBox="0 0 940 610" role="img" aria-labelledby="maptitle"><title id="maptitle">Teams forbundet til selvbeskrevne og høstede inskriptioner</title></svg>
+    <div id="om" class="om" hidden></div>
+    <div class="legend" id="legend-map">
+      <span><span class="sw" style="background:var(--self-tint);border-color:var(--self)"></span>Selvbeskrevet inskription</span>
+      <span><span class="sw" style="background:var(--harv-tint);border-color:var(--harv)"></span>Høstet inskription</span>
+      <span><span class="sw" style="background:var(--team-fill);border-color:var(--team);border-radius:50%"></span>Team · størrelse = merged PRs</span>
+      <span><span class="sw" style="border-color:var(--quiet);border-style:dashed;border-radius:50%"></span>Tavs: ingen høstede spor</span>
+      <span><span class="sw" style="background:var(--spokes-tint);border-color:var(--spokes)"></span>Talsmand</span>
+    </div>
+    <div class="legend" id="legend-om" hidden>
+      <span><span class="sw" style="background:var(--self-tint);border-color:var(--self)"></span>Selvbeskrevet</span>
+      <span><span class="sw" style="background:var(--harv-tint);border-color:var(--harv)"></span>Høstet</span>
+      <span><span class="sw" style="background:var(--surface);border-color:var(--line)"></span>Begge: SIG-liste og PRs</span>
+      <span><span class="sw" style="border-color:var(--quiet);border-style:dashed"></span>Ikke i høsten</span>
+      <span>Tal ved teams = merged PRs, 90 dage</span>
+    </div>
+  </div>
+  <aside id="panel" aria-live="polite"></aside>
+</div>
+<p class="foot">Hver linje er en påstand med kilde i RTOM-grafen. Linjens tykkelse er relativ til det team, der har mest af den inskription. Høsten dækker kun PRs i kubernetes/kubernetes, så teams, hvis arbejde ligger i andre repos eller i review og design, står som tavse. Tavs betyder her "ikke målt", ikke "inaktiv".</p>
+</div>
+<script>
+const DATA = {"run":{"id":1,"at":"2026-10-01","days":90},"sigs":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sigs.yaml","teams":[{"id":"sig-api-machinery","name":"API Machinery","kind":"sig","mission":"Covers all aspects of API server, API registration and discovery, generic API CRUD semantics, admission control, encoding/decoding, conversion, defaulting, persistence layer (etcd), OpenAPI, CustomResourceDefinition, gar","leaders":["deads2k","fedebongio","jpbetz","sttts"],"w":{"sigs":61,"charter":15,"kep":138,"owners":146,"pr":287,"gomod":45},"keps":{"own":86,"part":52},"charter":{"inn":15,"out":0,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-api-machinery/charter.md"},"top":[["staging/src/k8s.io/client-go/applyconfigurations",54],["staging/src/k8s.io/code-generator",52],["staging/src/k8s.io/apiextensions-apiserver",44],["staging/src/k8s.io/kube-aggregator",38],["staging/src/k8s.io/sample-apiserver",37]],"prs":[{"n":"140201","url":"https://github.com/kubernetes/kubernetes/pull/140201","date":"2026-07-07","title":"Fix VAP/MAP params to consistently used the typed representation when available"},{"n":"140279","url":"https://github.com/kubernetes/kubernetes/pull/140279","date":"2026-07-07","title":"etcd3: fix RangeStream fallback for etcd older than 3.7"},{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"}]},{"id":"sig-apps","name":"Apps","kind":"sig","mission":"Covers deploying and operating applications in Kubernetes","leaders":["janetkuo","kow3ns","soltysh"],"w":{"sigs":34,"charter":8,"kep":59,"owners":84,"pr":108,"gomod":0},"keps":{"own":36,"part":23},"charter":{"inn":5,"out":3,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-apps/charter.md"},"top":[["pkg/apis/core/validation",28],["pkg/apis/core",17],["pkg/controller/resourceclaim",15],["pkg/apis/core/v1",15],["pkg/controller/volume",12]],"prs":[{"n":"140210","url":"https://github.com/kubernetes/kubernetes/pull/140210","date":"2026-07-06","title":"Use contextual logging in ResourcePoolStatusRequest controller"},{"n":"138560","url":"https://github.com/kubernetes/kubernetes/pull/138560","date":"2026-07-08","title":"Promote SVM to GA"},{"n":"139822","url":"https://github.com/kubernetes/kubernetes/pull/139822","date":"2026-07-08","title":"policy: enable commentstart kube-api-linter rule"}]},{"id":"sig-architecture","name":"Architecture","kind":"sig","mission":"The Architecture SIG maintains and evolves the design principles of Kubernetes, and provides a consistent body of expertise necessary to ensure architectural consistency over time","leaders":["derekwaynecarr","dims","johnbelamaric"],"w":{"sigs":22,"charter":16,"kep":52,"owners":17,"pr":35,"gomod":15},"keps":{"own":17,"part":35},"charter":{"inn":14,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-architecture/charter.md"},"top":[["staging/src/k8s.io/component-base",21],["test/conformance/testdata",7],["staging/src/k8s.io/component-base/metrics",5],["test/e2e/architecture",1],["test/conformance",1]],"prs":[{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"138560","url":"https://github.com/kubernetes/kubernetes/pull/138560","date":"2026-07-08","title":"Promote SVM to GA"},{"n":"140337","url":"https://github.com/kubernetes/kubernetes/pull/140337","date":"2026-07-09","title":"Bump github.com/containerd/ttrpc to v1.2.9"}]},{"id":"sig-auth","name":"Auth","kind":"sig","mission":"Covers improvements to Kubernetes authorization, authentication, and cluster security policy.\n\n\"All I want is a secure system where it's easy to do anything I want","leaders":["aramase","deads2k","enj","liggitt","micahhausler","ritazh"],"w":{"sigs":56,"charter":5,"kep":73,"owners":76,"pr":86,"gomod":10},"keps":{"own":36,"part":37},"charter":{"inn":3,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-auth/charter.md"},"top":[["staging/src/k8s.io/pod-security-admission",29],["staging/src/k8s.io/kms",11],["plugin/pkg/auth/authorizer",11],["pkg/apis/certificates",10],["staging/src/k8s.io/externaljwt",9]],"prs":[{"n":"135050","url":"https://github.com/kubernetes/kubernetes/pull/135050","date":"2026-07-07","title":"Enables Declarative validation for ClusterRoleBinding"},{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"138560","url":"https://github.com/kubernetes/kubernetes/pull/138560","date":"2026-07-08","title":"Promote SVM to GA"}]},{"id":"sig-autoscaling","name":"Autoscaling","kind":"sig","mission":"Covers development and maintenance of components for automated workload and node scaling in Kubernetes","leaders":["adrianmoisey","jackfrancis","omerap12","towca"],"w":{"sigs":9,"charter":13,"kep":27,"owners":7,"pr":14,"gomod":0},"keps":{"own":10,"part":17},"charter":{"inn":11,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-autoscaling/charter.md"},"top":[["pkg/controller/podautoscaler",6],["staging/src/k8s.io/component-helpers/nodedeclaredfeatures/features",5],["test/e2e/autoscaling",2],["test/e2e/framework/autoscaling",1]],"prs":[{"n":"140107","url":"https://github.com/kubernetes/kubernetes/pull/140107","date":"2026-07-16","title":"Promote the HPAConfigurableTolerance feature gate to GA"},{"n":"140605","url":"https://github.com/kubernetes/kubernetes/pull/140605","date":"2026-07-20","title":"Refactor horizontal test 04"},{"n":"139425","url":"https://github.com/kubernetes/kubernetes/pull/139425","date":"2026-07-21","title":"feat: Support dynamically resizing memory-backed volumes"}]},{"id":"sig-cli","name":"CLI","kind":"sig","mission":"Covers kubectl and related tools","leaders":["ardaguclu","eddiezane","mpuckett159","soltysh"],"w":{"sigs":12,"charter":0,"kep":52,"owners":17,"pr":41,"gomod":9},"keps":{"own":35,"part":17},"charter":{"inn":0,"out":0,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-cli/charter.md"},"top":[["staging/src/k8s.io/kubectl",38],["staging/src/k8s.io/cli-runtime",19],["staging/src/k8s.io/sample-cli-plugin",17],["staging/src/k8s.io/kubectl/pkg/explain",1],["staging/src/k8s.io/kubectl/pkg/cmd/auth",1]],"prs":[{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"140337","url":"https://github.com/kubernetes/kubernetes/pull/140337","date":"2026-07-09","title":"Bump github.com/containerd/ttrpc to v1.2.9"},{"n":"140385","url":"https://github.com/kubernetes/kubernetes/pull/140385","date":"2026-07-10","title":"bump github.com/google/cadvisor/lib from v0.60.3 to v0.60.4"}]},{"id":"sig-cloud-provider","name":"Cloud Provider","kind":"sig","mission":"Ensures that the Kubernetes ecosystem is evolving in a way that is neutral to all (public and private) cloud providers","leaders":["bridgetkromhout","cheftako","elmiko","joelspeed"],"w":{"sigs":38,"charter":21,"kep":45,"owners":31,"pr":40,"gomod":12},"keps":{"own":31,"part":14},"charter":{"inn":19,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-cloud-provider/charter.md"},"top":[["staging/src/k8s.io/cloud-provider",28],["staging/src/k8s.io/controller-manager",26],["cluster/gce",5],["cluster/gce/manifests",4],["staging/src/k8s.io/cloud-provider/controllers/route",3]],"prs":[{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"140333","url":"https://github.com/kubernetes/kubernetes/pull/140333","date":"2026-07-08","title":"etcd: update etcd version to v3.7.0"},{"n":"140337","url":"https://github.com/kubernetes/kubernetes/pull/140337","date":"2026-07-09","title":"Bump github.com/containerd/ttrpc to v1.2.9"}]},{"id":"sig-cluster-lifecycle","name":"Cluster Lifecycle","kind":"sig","mission":"The Cluster Lifecycle SIG examines how we should change Kubernetes to make it easier to manage and operate with a focus on cluster deployment and upgrades","leaders":["fabriziopandini","justinsb","neolit123","vincepri"],"w":{"sigs":32,"charter":17,"kep":51,"owners":8,"pr":28,"gomod":1},"keps":{"own":28,"part":23},"charter":{"inn":12,"out":5,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-cluster-lifecycle/charter.md"},"top":[["staging/src/k8s.io/cluster-bootstrap",16],["cmd/kubeadm",11],["test/e2e_kubeadm",1],["staging/src/k8s.io/cluster-bootstrap/token",1]],"prs":[{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"140333","url":"https://github.com/kubernetes/kubernetes/pull/140333","date":"2026-07-08","title":"etcd: update etcd version to v3.7.0"},{"n":"140385","url":"https://github.com/kubernetes/kubernetes/pull/140385","date":"2026-07-10","title":"bump github.com/google/cadvisor/lib from v0.60.3 to v0.60.4"}]},{"id":"sig-contributor-experience","name":"Contributor Experience","kind":"sig","mission":"Developing and sustaining a healthy community of contributors is critical to scaling the project and growing the ecosystem","leaders":["kaslin","madhavjivrajani","mfahlandt","palnabarun","priyankasaggu11929"],"w":{"sigs":21,"charter":24,"kep":6,"owners":10,"pr":2,"gomod":0},"keps":{"own":3,"part":3},"charter":{"inn":16,"out":8,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-contributor-experience/charter.md"},"top":[[".github",2]],"prs":[{"n":"141199","url":"https://github.com/kubernetes/kubernetes/pull/141199","date":"2026-08-26","title":"Add AI usage disclosure to the pull request template"},{"n":"142175","url":"https://github.com/kubernetes/kubernetes/pull/142175","date":"2026-09-25","title":"GitHub: remove \"Additional documentation\" section from PR template"}]},{"id":"sig-docs","name":"Docs","kind":"sig","mission":"Covers documentation, doc processes, and doc publishing for Kubernetes","leaders":["dipesh-rawat","divya-mohan0209","katcosgrove","natalisucks","reylejano","salaxander","tengqm"],"w":{"sigs":3,"charter":14,"kep":8,"owners":1,"pr":0,"gomod":0},"keps":{"own":1,"part":7},"charter":{"inn":12,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-docs/charter.md"},"top":[],"prs":[]},{"id":"sig-etcd","name":"etcd","kind":"sig","mission":"etcd is a production-ready store for building cloud-native distributed systems and managing cloud-native infrastructure via orchestrators like Kubernetes.\nEtcd should provide distributed system primitives** (such as dist","leaders":["ahrtr","ivanvc","jberkus","serathius","siyuanfoundation"],"w":{"sigs":13,"charter":5,"kep":5,"owners":5,"pr":34,"gomod":0},"keps":{"own":5,"part":0},"charter":{"inn":4,"out":1,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-etcd/charter.md"},"top":[["staging/src/k8s.io/apiserver/pkg/storage/etcd3",20],["test/integration/etcd",11],["test/e2e/testing-manifests/statefulset/etcd",2],["staging/src/k8s.io/apiserver/pkg/storage/etcd3/metrics",2],["staging/src/k8s.io/kube-aggregator/pkg/registry/apiservice/etcd",1]],"prs":[{"n":"140279","url":"https://github.com/kubernetes/kubernetes/pull/140279","date":"2026-07-07","title":"etcd3: fix RangeStream fallback for etcd older than 3.7"},{"n":"138560","url":"https://github.com/kubernetes/kubernetes/pull/138560","date":"2026-07-08","title":"Promote SVM to GA"},{"n":"140333","url":"https://github.com/kubernetes/kubernetes/pull/140333","date":"2026-07-08","title":"etcd: update etcd version to v3.7.0"}]},{"id":"sig-instrumentation","name":"Instrumentation","kind":"sig","mission":"Covers best practices for cluster observability through metrics, logging, events, and traces across all Kubernetes components and development of relevant components such as klog and kube-state-metrics","leaders":["dashpole","dgrisonnet","pohly","rexagod","richabanker"],"w":{"sigs":14,"charter":8,"kep":30,"owners":27,"pr":58,"gomod":4},"keps":{"own":20,"part":10},"charter":{"inn":4,"out":4,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-instrumentation/charter.md"},"top":[["hack/tools/instrumentation",31],["staging/src/k8s.io/metrics",20],["staging/src/k8s.io/apiserver/pkg/storage/cacher/metrics",7],["hack/tools/instrumentation/testdata",7],["staging/src/k8s.io/component-base/metrics",5]],"prs":[{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"140337","url":"https://github.com/kubernetes/kubernetes/pull/140337","date":"2026-07-09","title":"Bump github.com/containerd/ttrpc to v1.2.9"},{"n":"140385","url":"https://github.com/kubernetes/kubernetes/pull/140385","date":"2026-07-10","title":"bump github.com/google/cadvisor/lib from v0.60.3 to v0.60.4"}]},{"id":"sig-k8s-infra","name":"K8s Infra","kind":"sig","mission":"SIG K8s Infra is interested in the successful migration of ownership and management of all Kubernetes project infrastructure from the google.com GCP Organization (or elsewhere) to the CNCF, such that the Kubernetes proje","leaders":["ameukam","genpage","hakman","upodroid","xmudrii"],"w":{"sigs":6,"charter":23,"kep":5,"owners":4,"pr":0,"gomod":0},"keps":{"own":0,"part":5},"charter":{"inn":21,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-k8s-infra/charter.md"},"top":[],"prs":[]},{"id":"sig-multicluster","name":"Multicluster","kind":"sig","mission":"A Special Interest Group focused on solving common challenges related to the management of multiple Kubernetes clusters, and applications that exist therein","leaders":["jeremyot","skitt"],"w":{"sigs":5,"charter":2,"kep":6,"owners":4,"pr":0,"gomod":0},"keps":{"own":5,"part":1},"charter":{"inn":1,"out":1,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-multicluster/charter.md"},"top":[],"prs":[]},{"id":"sig-network","name":"Network","kind":"sig","mission":"Covers networking in Kubernetes","leaders":["aojea","bowei","danwinship","guicassolato","mikezappa87","thockin"],"w":{"sigs":33,"charter":18,"kep":91,"owners":37,"pr":51,"gomod":5},"keps":{"own":62,"part":29},"charter":{"inn":16,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-network/charter.md"},"top":[["staging/src/k8s.io/endpointslice",24],["staging/src/k8s.io/kube-proxy",20],["pkg/proxy",10],["test/e2e/network",6],["pkg/apis/networking",6]],"prs":[{"n":"140206","url":"https://github.com/kubernetes/kubernetes/pull/140206","date":"2026-07-04","title":"proxy: log nodePort changes for improved observability"},{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"140204","url":"https://github.com/kubernetes/kubernetes/pull/140204","date":"2026-07-08","title":"validation-gen can be used for protobuf Go code"}]},{"id":"sig-node","name":"Node","kind":"sig","mission":"SIG Node is responsible for the components that support the controlled interactions between pods and host resources","leaders":["dchen1107","derekwaynecarr","haircommander","mrunalp","sergeykanzhelev"],"w":{"sigs":41,"charter":19,"kep":205,"owners":72,"pr":271,"gomod":6},"keps":{"own":139,"part":66},"charter":{"inn":17,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-node/charter.md"},"top":[["staging/src/k8s.io/dynamic-resource-allocation",79],["pkg/kubelet",61],["test/e2e_node",42],["pkg/scheduler/framework/plugins/dynamicresources",30],["pkg/kubelet/cm/cpumanager",23]],"prs":[{"n":"140212","url":"https://github.com/kubernetes/kubernetes/pull/140212","date":"2026-07-07","title":"kubelet/dra: skip unprepareResources when claimInfo doesn't reference the pod"},{"n":"140222","url":"https://github.com/kubernetes/kubernetes/pull/140222","date":"2026-07-07","title":"scheduler: reduce scheduler PostFilter event noise"},{"n":"140218","url":"https://github.com/kubernetes/kubernetes/pull/140218","date":"2026-07-07","title":"Mark newly NodeConformance-tagged resize/restart/device-plugin tests as Slow"}]},{"id":"sig-release","name":"Release","kind":"sig","mission":"Ensure quality Kubernetes releases","leaders":["cpanato","jeremyrickard","justaugustus","puerco","saschagrunert","verolop"],"w":{"sigs":25,"charter":3,"kep":28,"owners":21,"pr":6,"gomod":0},"keps":{"own":15,"part":13},"charter":{"inn":3,"out":0,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-release/charter.md"},"top":[["staging/publishing",3],["build/build-image",2],["staging/src/k8s.io/component-base/version",1]],"prs":[{"n":"140576","url":"https://github.com/kubernetes/kubernetes/pull/140576","date":"2026-07-15","title":"Bump images and versions to golang 1.26.5"},{"n":"139933","url":"https://github.com/kubernetes/kubernetes/pull/139933","date":"2026-07-24","title":"DRA: Optional Node Operations"},{"n":"141273","url":"https://github.com/kubernetes/kubernetes/pull/141273","date":"2026-08-08","title":"Add release-1.37 publishing bot rules, drop release-1.33"}]},{"id":"sig-scalability","name":"Scalability","kind":"sig","mission":"SIG Scalability is responsible for defining and driving scalability goals for Kubernetes","leaders":["marseel","mengqiy","shyamjvs","wojtek-t"],"w":{"sigs":13,"charter":7,"kep":24,"owners":7,"pr":0,"gomod":0},"keps":{"own":0,"part":24},"charter":{"inn":6,"out":1,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-scalability/charter.md"},"top":[],"prs":[]},{"id":"sig-scheduling","name":"Scheduling","kind":"sig","mission":"SIG Scheduling is responsible for the components that make Pod placement decisions","leaders":["dom4ha","macsko","sanposhiho"],"w":{"sigs":11,"charter":11,"kep":99,"owners":27,"pr":181,"gomod":4},"keps":{"own":59,"part":40},"charter":{"inn":8,"out":3,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-scheduling/charter.md"},"top":[["pkg/scheduler",90],["staging/src/k8s.io/kube-scheduler",52],["test/integration/scheduler",40],["pkg/scheduler/framework/plugins/dynamicresources",30],["test/integration/scheduler_perf",13]],"prs":[{"n":"140247","url":"https://github.com/kubernetes/kubernetes/pull/140247","date":"2026-07-06","title":"Embed SharedLister to MutableSnapshotSharedLister"},{"n":"140222","url":"https://github.com/kubernetes/kubernetes/pull/140222","date":"2026-07-07","title":"scheduler: reduce scheduler PostFilter event noise"},{"n":"140264","url":"https://github.com/kubernetes/kubernetes/pull/140264","date":"2026-07-07","title":"scheduler_perf: Disable flaky DRAWorkloadResourceClaims tests"}]},{"id":"sig-security","name":"Security","kind":"sig","mission":"SIG Security takes a community-building approach to improving security for end users, project maintainers, and the Kubernetes project itself","leaders":["cailyn-codes","iancoldwater","tabbysable"],"w":{"sigs":6,"charter":23,"kep":16,"owners":0,"pr":0,"gomod":0},"keps":{"own":3,"part":13},"charter":{"inn":16,"out":7,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-security/charter.md"},"top":[],"prs":[]},{"id":"sig-storage","name":"Storage","kind":"sig","mission":"SIG Storage is responsible for ensuring that different types of file and block storage (whether ephemeral or persistent, local or remote) are available wherever a container is scheduled (including provisioning/creating, ","leaders":["gnufied","jsafrane","msau42","xing-yang"],"w":{"sigs":36,"charter":13,"kep":89,"owners":34,"pr":69,"gomod":1},"keps":{"own":68,"part":21},"charter":{"inn":10,"out":3,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-storage/charter.md"},"top":[["staging/src/k8s.io/csi-translation-lib",15],["test/e2e/storage",14],["pkg/controller/volume",12],["pkg/volume",10],["pkg/apis/storage",10]],"prs":[{"n":"140294","url":"https://github.com/kubernetes/kubernetes/pull/140294","date":"2026-07-08","title":"Bump SMD to v6.4.2 to revert #306 to fix regression in SSA for nullable container types"},{"n":"140204","url":"https://github.com/kubernetes/kubernetes/pull/140204","date":"2026-07-08","title":"validation-gen can be used for protobuf Go code"},{"n":"139505","url":"https://github.com/kubernetes/kubernetes/pull/139505","date":"2026-07-08","title":"Configure DV on ObjectMeta"}]},{"id":"sig-testing","name":"Testing","kind":"sig","mission":"Interested in how we can most effectively test Kubernetes","leaders":["aojea","bentheelder","jbpratt","michelle192837","pohly"],"w":{"sigs":13,"charter":17,"kep":26,"owners":130,"pr":250,"gomod":0},"keps":{"own":9,"part":17},"charter":{"inn":15,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-testing/charter.md"},"top":[["test/e2e_node",42],["test/integration/scheduler",40],["test",32],["test/e2e/dra",21],["test/integration/dra",20]],"prs":[{"n":"140211","url":"https://github.com/kubernetes/kubernetes/pull/140211","date":"2026-07-05","title":"Promote regression-issue-74839 to 1.5"},{"n":"140222","url":"https://github.com/kubernetes/kubernetes/pull/140222","date":"2026-07-07","title":"scheduler: reduce scheduler PostFilter event noise"},{"n":"140264","url":"https://github.com/kubernetes/kubernetes/pull/140264","date":"2026-07-07","title":"scheduler_perf: Disable flaky DRAWorkloadResourceClaims tests"}]},{"id":"sig-ui","name":"UI","kind":"sig","mission":"Covers all things UI related","leaders":["joaquimrocha","kahirokunn"],"w":{"sigs":1,"charter":0,"kep":1,"owners":0,"pr":0,"gomod":0},"keps":{"own":1,"part":0},"charter":{"inn":0,"out":0,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-ui/charter.md"},"top":[],"prs":[]},{"id":"sig-windows","name":"Windows","kind":"sig","mission":"Focuses on supporting Windows Node and scheduling Windows containers on Kubernetes","leaders":["claudiubelu","jrvaldes","marosset","zylxjtu"],"w":{"sigs":7,"charter":3,"kep":19,"owners":5,"pr":6,"gomod":0},"keps":{"own":15,"part":4},"charter":{"inn":3,"out":0,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/sig-windows/charter.md"},"top":[["test/e2e_node_windows",3],["test/e2e/windows",1],["pkg/windows/service",1],["pkg/proxy/winkernel",1]],"prs":[{"n":"140343","url":"https://github.com/kubernetes/kubernetes/pull/140343","date":"2026-07-20","title":"Add the windows topology/CPU/Mem manager metrics related tests"},{"n":"140366","url":"https://github.com/kubernetes/kubernetes/pull/140366","date":"2026-07-22","title":"KEP-5823: Add CheckpointPod and RestorePod CRI API"},{"n":"140811","url":"https://github.com/kubernetes/kubernetes/pull/140811","date":"2026-07-23","title":"Add windows topology manager related tests"}]},{"id":"wg-ai-gateway","name":"AI Gateway","kind":"wg","mission":"The AI Gateway Working Group focuses on the intersection of AI and networking, particularly in the context of extending load-balancer, gateway and proxy technologies to manage and route traffic for AI Inference","leaders":["keithmattix","kflynn","kfswain","nirrozenbaum","usize"],"w":{"sigs":0,"charter":10,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":5,"out":5,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-ai-gateway/charter.md"},"top":[],"prs":[]},{"id":"wg-batch","name":"Batch","kind":"wg","mission":"Discuss and enhance the support for Batch (eg","leaders":["amy","mwielgus","tenzen-y"],"w":{"sigs":0,"charter":6,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":2,"out":4,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-batch/charter.md"},"top":[],"prs":[]},{"id":"wg-checkpoint-restore","name":"Checkpoint Restore","kind":"wg","mission":"This working group aims to provide a central location for the community to discuss the integration of Checkpoint/Restore functionality into Kubernetes","leaders":["adrianreber","andreyvelich","haircommander","rst0git"],"w":{"sigs":0,"charter":8,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":6,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-checkpoint-restore/charter.md"},"top":[],"prs":[]},{"id":"wg-data-protection","name":"Data Protection","kind":"wg","mission":"A Working Group dedicated to promoting data protection support in Kubernetes, identifying missing functionality and working together to design features to enable data protection support","leaders":["xing-yang","yuxiangqian"],"w":{"sigs":0,"charter":14,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":11,"out":3,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-data-protection/charter.md"},"top":[],"prs":[]},{"id":"wg-device-management","name":"Device Management","kind":"wg","mission":"Enable simple and efficient configuration, sharing, and allocation of accelerators and other specialized devices.\n[Additional context](https://groups.google.com/a/kubernetes.io/g/dev/c/YWXGXe07A5w/m/OqLvdQ47BQAJ)","leaders":["johnbelamaric","klueska","pohly"],"w":{"sigs":0,"charter":12,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":10,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-device-management/charter.md"},"top":[],"prs":[]},{"id":"wg-etcd-operator","name":"etcd Operator","kind":"wg","mission":"The working group is dedicated to enabling automatic and efficient operation of etcd clusters in Kubernetes using an etcd-operator","leaders":["ahrtr","hakman","jberkus","jmhbnz","justinsb"],"w":{"sigs":0,"charter":7,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":5,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-etcd-operator/charter.md"},"top":[],"prs":[]},{"id":"wg-node-identity","name":"Node Identity","kind":"wg","mission":"To define “node attestation” and propose deliverables that need to be adopted to deploy, secure, cloud–provider/hardware-backed node identity and attestation with a common model across environments","leaders":["ahmedtd","elmiko","hakman","pfeifferj","randomvariable","rata"],"w":{"sigs":0,"charter":9,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":5,"out":4,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-node-identity/charter.md"},"top":[],"prs":[]},{"id":"wg-node-lifecycle","name":"Node Lifecycle","kind":"wg","mission":"Explore and improve node and pod lifecycle in Kubernetes","leaders":["atiratree","intunderflow","rthallisey"],"w":{"sigs":0,"charter":13,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":11,"out":2,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-node-lifecycle/charter.md"},"top":[],"prs":[]},{"id":"wg-workload-aware-scheduling","name":"Workload-aware Scheduling","kind":"wg","mission":"Establish native APIs and a common scheduling substrate in core Kubernetes to evolve beyond pod-by-pod placement and natively support workload-aware scheduling paradigms","leaders":["andreyvelich","helayoty","kannon92","mm4tt"],"w":{"sigs":0,"charter":9,"kep":0,"owners":0,"pr":0,"gomod":0},"keps":{"own":0,"part":0},"charter":{"inn":6,"out":3,"url":"https://github.com/kubernetes/community/blob/601e971db01debfdc26b0ff63b6b141f73e65fd4/wg-workload-aware-scheduling/charter.md"},"top":[],"prs":[]}],"assoc":[{"a":"sig-apps","b":"sig-autoscaling","pr":10,"kep":3},{"a":"sig-cluster-lifecycle","b":"sig-storage","pr":15,"kep":10},{"a":"sig-autoscaling","b":"sig-scheduling","pr":6,"kep":16},{"a":"sig-api-machinery","b":"sig-scalability","pr":0,"kep":17},{"a":"sig-architecture","b":"sig-node","pr":29,"kep":12},{"a":"sig-node","b":"sig-scheduling","pr":73,"kep":37},{"a":"sig-testing","b":"sig-windows","pr":4,"kep":1},{"a":"sig-cli","b":"sig-scheduling","pr":23,"kep":1},{"a":"sig-contributor-experience","b":"sig-release","pr":0,"kep":4},{"a":"sig-architecture","b":"sig-auth","pr":27,"kep":3},{"a":"sig-k8s-infra","b":"sig-release","pr":0,"kep":4},{"a":"sig-cluster-lifecycle","b":"sig-etcd","pr":3,"kep":0},{"a":"sig-apps","b":"sig-instrumentation","pr":5,"kep":1},{"a":"sig-apps","b":"sig-auth","pr":27,"kep":3},{"a":"sig-architecture","b":"sig-cli","pr":22,"kep":4},{"a":"sig-storage","b":"sig-testing","pr":22,"kep":0},{"a":"sig-scheduling","b":"sig-testing","pr":77,"kep":1},{"a":"sig-apps","b":"sig-storage","pr":27,"kep":6},{"a":"sig-api-machinery","b":"sig-scheduling","pr":56,"kep":10},{"a":"sig-apps","b":"sig-architecture","pr":7,"kep":7},{"a":"sig-cloud-provider","b":"sig-release","pr":0,"kep":5},{"a":"sig-apps","b":"sig-etcd","pr":9,"kep":0},{"a":"sig-etcd","b":"sig-storage","pr":5,"kep":0},{"a":"sig-architecture","b":"sig-cluster-lifecycle","pr":15,"kep":3},{"a":"sig-auth","b":"sig-scheduling","pr":43,"kep":3},{"a":"sig-api-machinery","b":"sig-autoscaling","pr":7,"kep":0},{"a":"sig-cloud-provider","b":"sig-instrumentation","pr":20,"kep":1},{"a":"sig-cloud-provider","b":"sig-storage","pr":17,"kep":5},{"a":"sig-cli","b":"sig-instrumentation","pr":19,"kep":1},{"a":"sig-node","b":"sig-storage","pr":28,"kep":22},{"a":"sig-architecture","b":"sig-network","pr":21,"kep":6},{"a":"sig-cli","b":"sig-storage","pr":17,"kep":0},{"a":"sig-api-machinery","b":"sig-release","pr":2,"kep":3},{"a":"sig-instrumentation","b":"sig-node","pr":27,"kep":8},{"a":"sig-auth","b":"sig-autoscaling","pr":3,"kep":1},{"a":"sig-api-machinery","b":"sig-instrumentation","pr":35,"kep":7},{"a":"sig-cloud-provider","b":"sig-etcd","pr":3,"kep":0},{"a":"sig-cluster-lifecycle","b":"sig-testing","pr":5,"kep":2},{"a":"sig-api-machinery","b":"sig-storage","pr":34,"kep":6},{"a":"sig-cli","b":"sig-cloud-provider","pr":21,"kep":0},{"a":"sig-api-machinery","b":"sig-architecture","pr":28,"kep":20},{"a":"sig-release","b":"sig-security","pr":0,"kep":3},{"a":"sig-network","b":"sig-node","pr":26,"kep":22},{"a":"sig-api-machinery","b":"sig-cloud-provider","pr":28,"kep":8},{"a":"sig-auth","b":"sig-instrumentation","pr":21,"kep":2},{"a":"sig-cluster-lifecycle","b":"sig-release","pr":0,"kep":3},{"a":"sig-api-machinery","b":"sig-etcd","pr":34,"kep":2},{"a":"sig-api-machinery","b":"sig-apps","pr":48,"kep":6},{"a":"sig-auth","b":"sig-storage","pr":27,"kep":12},{"a":"sig-apps","b":"sig-testing","pr":39,"kep":0},{"a":"sig-instrumentation","b":"sig-scheduling","pr":29,"kep":5},{"a":"sig-auth","b":"sig-security","pr":0,"kep":4},{"a":"sig-auth","b":"sig-cloud-provider","pr":26,"kep":1},{"a":"sig-apps","b":"sig-node","pr":42,"kep":14},{"a":"sig-auth","b":"sig-etcd","pr":12,"kep":0},{"a":"sig-etcd","b":"sig-testing","pr":16,"kep":0},{"a":"sig-instrumentation","b":"sig-network","pr":19,"kep":1},{"a":"sig-network","b":"sig-scheduling","pr":28,"kep":6},{"a":"sig-autoscaling","b":"sig-testing","pr":7,"kep":0},{"a":"sig-cloud-provider","b":"sig-testing","pr":6,"kep":3},{"a":"sig-node","b":"sig-testing","pr":106,"kep":5},{"a":"sig-apps","b":"sig-cli","pr":3,"kep":5},{"a":"sig-etcd","b":"sig-instrumentation","pr":5,"kep":0},{"a":"sig-architecture","b":"sig-scheduling","pr":23,"kep":4},{"a":"sig-autoscaling","b":"sig-node","pr":7,"kep":13},{"a":"sig-cloud-provider","b":"sig-node","pr":26,"kep":6},{"a":"sig-node","b":"sig-windows","pr":2,"kep":12},{"a":"sig-api-machinery","b":"sig-testing","pr":76,"kep":7},{"a":"sig-cli","b":"sig-node","pr":23,"kep":8},{"a":"sig-instrumentation","b":"sig-storage","pr":19,"kep":1},{"a":"sig-release","b":"sig-testing","pr":3,"kep":12},{"a":"sig-api-machinery","b":"sig-node","pr":65,"kep":16},{"a":"sig-node","b":"sig-security","pr":0,"kep":8},{"a":"sig-apps","b":"sig-network","pr":12,"kep":2},{"a":"sig-auth","b":"sig-testing","pr":32,"kep":0},{"a":"sig-api-machinery","b":"sig-auth","pr":66,"kep":16},{"a":"sig-network","b":"sig-storage","pr":22,"kep":3},{"a":"sig-cloud-provider","b":"sig-scheduling","pr":26,"kep":3},{"a":"sig-architecture","b":"sig-release","pr":1,"kep":8},{"a":"sig-api-machinery","b":"sig-cli","pr":24,"kep":16},{"a":"sig-cloud-provider","b":"sig-cluster-lifecycle","pr":20,"kep":4},{"a":"sig-api-machinery","b":"sig-security","pr":0,"kep":3},{"a":"sig-architecture","b":"sig-instrumentation","pr":25,"kep":7},{"a":"sig-auth","b":"sig-node","pr":46,"kep":25},{"a":"sig-auth","b":"sig-windows","pr":1,"kep":5},{"a":"sig-cli","b":"sig-cluster-lifecycle","pr":15,"kep":0},{"a":"sig-architecture","b":"sig-storage","pr":19,"kep":4},{"a":"sig-cluster-lifecycle","b":"sig-node","pr":17,"kep":6},{"a":"sig-cloud-provider","b":"sig-network","pr":22,"kep":11},{"a":"sig-architecture","b":"sig-docs","pr":0,"kep":4},{"a":"sig-cli","b":"sig-network","pr":21,"kep":1},{"a":"sig-auth","b":"sig-cli","pr":24,"kep":5},{"a":"sig-api-machinery","b":"sig-cluster-lifecycle","pr":18,"kep":7},{"a":"sig-architecture","b":"sig-cloud-provider","pr":21,"kep":2},{"a":"sig-architecture","b":"sig-etcd","pr":6,"kep":0},{"a":"sig-api-machinery","b":"sig-network","pr":30,"kep":14},{"a":"sig-scheduling","b":"sig-storage","pr":26,"kep":9},{"a":"sig-instrumentation","b":"sig-testing","pr":12,"kep":3},{"a":"sig-auth","b":"sig-cluster-lifecycle","pr":17,"kep":1},{"a":"sig-cluster-lifecycle","b":"sig-scheduling","pr":17,"kep":2},{"a":"sig-architecture","b":"sig-contributor-experience","pr":0,"kep":3},{"a":"sig-etcd","b":"sig-node","pr":9,"kep":0},{"a":"sig-auth","b":"sig-network","pr":28,"kep":5},{"a":"sig-cluster-lifecycle","b":"sig-network","pr":15,"kep":6},{"a":"sig-security","b":"sig-testing","pr":0,"kep":3},{"a":"sig-network","b":"sig-testing","pr":12,"kep":3},{"a":"sig-apps","b":"sig-scheduling","pr":25,"kep":20},{"a":"sig-node","b":"sig-scalability","pr":0,"kep":3},{"a":"sig-instrumentation","b":"sig-security","pr":0,"kep":3},{"a":"sig-architecture","b":"sig-testing","pr":12,"kep":9},{"a":"sig-etcd","b":"sig-scheduling","pr":5,"kep":0},{"a":"sig-cluster-lifecycle","b":"sig-instrumentation","pr":15,"kep":1}],"stats":{"keps_impl":296,"keps_prov":60,"top_owners":[["node",82],["scheduling",38],["api-machinery",35]],"leaders":122,"approvers":584,"authors":252,"staging":33,"owners_dirs":596,"prs":810}};
+const NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("map");
+const el = (tag, attrs = {}, parent = svg) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+const fmtDate = d => new Date(d + "T12:00:00").toLocaleDateString("da-DK", {day: "numeric", month: "short", year: "numeric"});
+document.getElementById("meta").textContent = `Høstet ${fmtDate(DATA.run.at)} · PRs fra de seneste ${DATA.run.days} dage · ${DATA.teams.length} teams`;
+
+const INS = [
+  {k: "sigs",    t: "sigs.yaml",  s: "underprojekter, ledere", side: "top", x: 130},
+  {k: "charter", t: "charter.md", s: "ejer / ejer ikke",       side: "top", x: 350},
+  {k: "kep",     t: "kep.yaml",   s: "mål: ejer, deltager",    side: "top", x: 570},
+  {k: "owners",  t: "OWNERS",     s: "sig/-label på mapper",   side: "bot", x: 130},
+  {k: "pr",      t: "Merged PR",  s: "rører filer",            side: "bot", x: 350},
+  {k: "gomod",   t: "go.mod",     s: "afhænger af",            side: "bot", x: 570},
+];
+const BW = 176, BH = 54, TOPY = 34, BOTY = 476;
+const max = {}; INS.forEach(i => max[i.k] = Math.max(1, ...DATA.teams.map(t => t.w[i.k])));
+const short = id => id.replace(/^sig-/, "").replace(/^contributor-experience$/, "contrib-exp");
+
+const active = DATA.teams.filter(t => t.w.pr > 0).sort((a, b) => b.w.pr - a.w.pr);
+const quiet = DATA.teams.filter(t => t.w.pr === 0).sort((a, b) => (a.kind === b.kind ? b.w.kep - a.w.kep : a.kind === "sig" ? -1 : 1));
+const pos = {};
+const perRow = Math.ceil(active.length / 2);
+active.forEach((t, i) => {
+  const row = Math.floor(i / perRow), col = i % perRow;
+  pos[t.id] = {x: 52 + col * (608 / (perRow - 1)), y: row ? 352 : 222, r: 5 + Math.sqrt(t.w.pr) * 1.15, quiet: false, low: col % 2 === 1};
+});
+quiet.forEach((t, i) => { pos[t.id] = {x: 734, y: 148 + i * 18.6, r: 4.5, quiet: true}; });
+
+const gEdges = el("g"), gArcs = el("g"), gIns = el("g"), gTeams = el("g");
+el("text", {x: 20, y: 24, class: "zone"}, gIns).textContent = "Selvbeskrevet · hvad teams skriver om sig selv";
+el("text", {x: 500, y: BOTY + BH + 55, class: "zone"}, gIns).textContent = "Høstet · spor af arbejdet";
+el("rect", {x: 712, y: 104, width: 216, height: 330, rx: 6, fill: "none", stroke: "var(--quiet)", "stroke-dasharray": "4 3"}, gIns);
+el("text", {x: 724, y: 126, class: "zone"}, gIns).textContent = "Tavse aktanter";
+
+INS.forEach(i => {
+  const y = i.side === "top" ? TOPY : BOTY, self = i.side === "top";
+  const g = el("g", {class: "ins"}, gIns);
+  el("rect", {x: i.x - BW / 2, y, width: BW, height: BH, rx: 5, fill: self ? "var(--self-tint)" : "var(--harv-tint)", stroke: self ? "var(--self)" : "var(--harv)"}, g);
+  el("text", {x: i.x - BW / 2 + 14, y: y + 23, class: "t"}, g).textContent = i.t;
+  el("text", {x: i.x - BW / 2 + 14, y: y + 42, class: "s"}, g).textContent = i.s;
+});
+const spk = el("g", {class: "ins"}, gIns);
+el("path", {d: `M130 ${BOTY + BH}V${BOTY + BH + 32}H250M570 ${BOTY + BH}V${BOTY + BH + 32}H450M350 ${BOTY + BH}V${BOTY + BH + 32}`, fill: "none", stroke: "var(--quiet)"}, spk);
+el("rect", {x: 220, y: BOTY + BH + 32, width: 260, height: 36, rx: 5, fill: "var(--spokes-tint)", stroke: "var(--spokes)"}, spk);
+el("text", {x: 234, y: BOTY + BH + 55, class: "t", style: "font-size:14px"}, spk).textContent = "RTOM-høsteren";
+el("text", {x: 466, y: BOTY + BH + 55, class: "s", "text-anchor": "end"}, spk).textContent = "talsmand";
+el("path", {d: `M42 ${TOPY + BH / 2}H14V${BOTY + BH + 50}H220`, fill: "none", stroke: "var(--quiet)", "stroke-dasharray": "3 3"}, spk);
+
+const edges = [];
+DATA.teams.forEach(t => {
+  const p = pos[t.id];
+  INS.forEach(i => {
+    const w = t.w[i.k]; if (!w) return;
+    const top = i.side === "top";
+    const ax = i.x + (p.x - i.x) * 0.22, ay = top ? TOPY + BH : BOTY;
+    const sy = top ? p.y - p.r : p.y + p.r;
+    const sx = p.quiet ? p.x - 6 : p.x;
+    const d = p.quiet ? `M${sx} ${p.y}C${sx - 120} ${p.y} ${ax} ${top ? ay + 90 : ay - 90} ${ax} ${ay}`
+                      : `M${sx} ${sy}C${sx} ${(sy + ay) / 2} ${ax} ${(sy + ay) / 2} ${ax} ${ay}`;
+    const path = el("path", {d, class: "edge", stroke: top ? "var(--self)" : "var(--harv)", "stroke-width": (0.6 + 4.4 * w / max[i.k]).toFixed(2)}, gEdges);
+    edges.push({team: t.id, path, quiet: p.quiet});
+  });
+});
+
+const teamEls = {};
+DATA.teams.forEach(t => {
+  const p = pos[t.id];
+  const g = el("g", {class: "team" + (p.quiet ? " quiet" : ""), tabindex: 0, role: "button", "aria-label": `${t.id}: ${t.w.pr} merged PRs`}, gTeams);
+  el("circle", {cx: p.x, cy: p.y, r: p.r}, g);
+  if (p.quiet) el("text", {x: p.x + 10, y: p.y + 4}, g).textContent = t.id;
+  else el("text", {x: p.x, y: p.y + p.r + (p.low ? 30 : 15)}, g).textContent = short(t.id);
+  g.addEventListener("click", () => select(t.id));
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(t.id); } });
+  g.addEventListener("mouseenter", () => hover(t.id));
+  g.addEventListener("mouseleave", () => hover(null));
+  teamEls[t.id] = g;
+});
+
+let mode = "ins", selected = "sig-node", hovered = null;
+function arcs() {
+  gArcs.replaceChildren();
+  if (mode === "ins") return;
+  const key = mode === "pr" ? "pr" : "kep", lim = mode === "pr" ? 8 : 3;
+  const mx = Math.max(...DATA.assoc.map(a => a[key]));
+  const focus = hovered || selected;
+  DATA.assoc.filter(a => a[key] >= lim && pos[a.a] && pos[a.b]).sort((a, b) => a[key] - b[key]).forEach(a => {
+    const p = pos[a.a], q = pos[a.b];
+    const mx2 = (p.x + q.x) / 2, my = (p.y + q.y) / 2, dx = q.x - p.x, dy = q.y - p.y, len = Math.hypot(dx, dy) || 1;
+    const bend = Math.min(80, len * 0.25);
+    const cx = mx2 - dy / len * bend, cy = my + dx / len * bend;
+    const on = a.a === focus || a.b === focus;
+    el("path", {d: `M${p.x} ${p.y}Q${cx} ${cy} ${q.x} ${q.y}`, class: "edge", stroke: mode === "pr" ? "var(--harv)" : "var(--self)",
+      "stroke-dasharray": mode === "kep" ? "5 3" : "", "stroke-width": (0.6 + 6 * a[key] / mx).toFixed(2), opacity: on ? 0.9 : 0.12}, gArcs);
+  });
+}
+function paint() {
+  const focus = hovered || selected;
+  edges.forEach(e => {
+    const on = e.team === focus;
+    e.path.style.display = mode === "ins" && (!e.quiet || on) ? "" : "none";
+    e.path.style.opacity = on ? 0.9 : 0.13;
+  });
+  Object.entries(teamEls).forEach(([id, g]) => g.classList.toggle("sel", id === selected));
+  document.querySelectorAll("#om .chip").forEach(c => c.classList.toggle("sel", c.dataset.t === selected));
+  arcs();
+}
+function hover(id) { hovered = id; paint(); }
+function setMode(m) { mode = m; ["ins", "pr", "kep", "om"].forEach(k => document.getElementById("m-" + k).setAttribute("aria-pressed", k === m));
+  const om = m === "om"; svg.style.display = om ? "none" : ""; document.getElementById("om").hidden = !om;
+  document.getElementById("legend-map").hidden = om; document.getElementById("legend-om").hidden = !om; paint(); }
+["ins", "pr", "kep", "om"].forEach(k => document.getElementById("m-" + k).addEventListener("click", () => setMode(k)));
+
+
+function buildOM() {
+  const S = DATA.stats, T = Object.fromEntries(DATA.teams.map(t => [t.id, t]));
+  const chip = id => { const t = T[id]; return `<button class="chip${t.w.pr ? "" : " zero"}" data-t="${id}"><span>${id.replace(/^sig-/, "").replace(/^wg-/, "")}</span><b>${t.w.pr}</b></button>`; };
+  const groups = [
+    ["Workloads", ["sig-node", "sig-scheduling", "sig-apps", "sig-autoscaling"]],
+    ["Platform", ["sig-api-machinery", "sig-auth", "sig-etcd"]],
+    ["Infrastruktur", ["sig-storage", "sig-network", "sig-cloud-provider", "sig-windows", "sig-multicluster"]],
+    ["CLI og UI", ["sig-cli", "sig-ui"]],
+  ];
+  const enabling = ["sig-testing", "sig-instrumentation", "sig-cluster-lifecycle", "sig-contributor-experience", "sig-docs", "sig-k8s-infra", "sig-scalability", "sig-security"];
+  const wgs = DATA.teams.filter(t => t.kind === "wg").map(t => t.id);
+  const row = (name, src, body, cls = "") => `<div class="layer ${cls}"><div class="lname"><b>${name}</b><span>${src}</span></div><div class="lbody">${body}</div></div>`;
+  document.getElementById("om").innerHTML =
+    row("Mål", "kep.yaml", `<div class="cell self"><b>${S.keps_impl + S.keps_prov} aktive mål (KEPs)</b><span>${S.keps_impl} implementable · ${S.keps_prov} provisional · flest ejet af ${S.top_owners.map(([t, n]) => `${t} (${n})`).join(", ")}</span></div>`) +
+    row("Styring", "hvem beslutter", `<div class="cells4">
+      <div class="cell none"><b>Steering</b><span>står i sigs.yaml, ikke høstet endnu</span></div>
+      <div class="cell self"><b>Arkitektur</b><span>${chip("sig-architecture")}</span></div>
+      <div class="cell self"><b>Release</b><span>${chip("sig-release")}</span></div>
+      <div class="cell harv"><b>${S.approvers} godkendere</b><span>approvers i OWNERS, pr. mappe</span></div></div>`) +
+    row("Capabilities", "SIGs · merged PRs", `<div class="cells4">${groups.map(([g, ids]) => `<div class="cell"><b>${g}</b><div class="chips">${ids.map(chip).join("")}</div></div>`).join("")}</div>`) +
+    row("Tværgående", "enabling SIGs", `<div class="cell"><div class="chips">${enabling.map(chip).join("")}</div></div>`) +
+    row("Working groups", "midlertidige", `<div class="cell none"><span>På tværs af SIGs. Ejer ingen kode og har ingen PRs.</span><div class="chips">${wgs.map(chip).join("")}</div></div>`) +
+    row("Mennesker", `${DATA.run.days} dage`, `<div class="cell"><span>${S.leaders} ledere (sigs.yaml) · ${S.approvers} godkendere (OWNERS) · ${S.authors} PR-forfattere</span></div>`) +
+    row("Teknologi", "git, go.mod", `<div class="cell harv"><span>kubernetes/kubernetes · ${S.staging} staging-moduler · ${S.owners_dirs} OWNERS-mapper · ${S.prs} merged PRs</span></div>`);
+  document.querySelectorAll("#om .chip").forEach(c => c.addEventListener("click", () => select(c.dataset.t)));
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+function select(id) {
+  selected = id; paint();
+  const t = DATA.teams.find(x => x.id === id);
+  const assoc = DATA.assoc.filter(a => a.a === id || a.b === id).map(a => ({o: a.a === id ? a.b : a.a, pr: a.pr, kep: a.kep}))
+    .sort((a, b) => b.pr - a.pr || b.kep - a.kep).slice(0, 6);
+  const quietHarvest = t.w.pr === 0;
+  document.getElementById("panel").innerHTML = `
+    <div><div class="kind">${t.kind === "wg" ? "Working group" : "SIG"} · ${esc(t.id)}</div><h2>${esc(t.name)}</h2>
+      ${t.mission ? `<p class="mission">${esc(t.mission)}.</p>` : ""}</div>
+    <div class="cmp">
+      <div class="col self"><h3>Selvbeskrevet</h3>
+        <div class="kv"><span>Områder</span><b>${t.w.sigs}</b></div>
+        <div class="kv"><span>Charter ind/ud</span><b>${t.charter.inn} / ${t.charter.out}</b></div>
+        <div class="kv"><span>KEPs ejer</span><b>${t.keps.own}</b></div>
+        <div class="kv"><span>KEPs deltager</span><b>${t.keps.part}</b></div>
+        <div class="kv"><span>Ledere</span><b>${t.leaders.length}</b></div></div>
+      <div class="col harv"><h3>Høstet</h3>
+        <div class="kv"><span>Mapper m. label</span><b>${t.w.owners}</b></div>
+        <div class="kv"><span>Merged PRs</span><b>${t.w.pr}</b></div>
+        <div class="kv"><span>go.mod-led</span><b>${t.w.gomod}</b></div></div>
+    </div>
+    ${quietHarvest ? `<div class="note">Ingen høstede spor i kubernetes/kubernetes de seneste ${DATA.run.days} dage. Teamet findes i de selvbeskrevne inskriptioner, men dets arbejde ligger andre steder eller efterlader ikke spor, som høsten læser.</div>` : ""}
+    ${t.w.owners > 3 * Math.max(1, t.w.sigs) ? `<div class="note">Label på ${t.w.owners} mapper, men kun ${t.w.sigs} områder i sigs.yaml. Teamet dukker op i langt mere kode, end det selv beskriver.</div>` : ""}
+    ${t.top.length ? `<div class="sec"><h3>Mest aktive mapper</h3><ul class="list">${t.top.map(([p, n]) => `<li><span class="p">${esc(p)}</span><span class="n">${n} PRs</span></li>`).join("")}</ul></div>` : ""}
+    ${assoc.length ? `<div class="sec"><h3>Stærkeste associationer</h3><ul class="list">${assoc.map(a => `<li><button data-t="${esc(a.o)}">${esc(a.o)}</button><span class="n">${a.pr} PRs · ${a.kep} KEPs</span></li>`).join("")}</ul></div>` : ""}
+    ${t.prs.length ? `<div class="sec prs"><h3>Seneste PRs</h3><ul class="list">${t.prs.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">#${esc(p.n)} ${esc(p.title)}</a><span class="n">${fmtDate(p.date)}</span></li>`).join("")}</ul></div>` : ""}
+    <div class="sec"><h3>Kilder</h3><ul class="list">
+      <li><a href="${esc(DATA.sigs)}" target="_blank" rel="noopener">sigs.yaml</a><span class="n">ledere, områder</span></li>
+      ${t.charter.url ? `<li><a href="${esc(t.charter.url)}" target="_blank" rel="noopener">charter.md</a><span class="n">ejer / ejer ikke</span></li>` : ""}
+    </ul></div>
+    ${t.leaders.length ? `<div class="sec"><h3>Ledere</h3><p class="list p" style="margin:0">${t.leaders.map(esc).join(", ")}</p></div>` : ""}`;
+  document.querySelectorAll("#panel button[data-t]").forEach(b => b.addEventListener("click", () => select(b.dataset.t)));
+}
+buildOM();
+select(selected);
+</script>
+
+</body></html>
