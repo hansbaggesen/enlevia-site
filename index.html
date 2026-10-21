@@ -19,27 +19,171 @@
   <link rel="icon" href="/favicon.ico" />
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://www.enlevia.com/#org",
-        "name": "Enlevia",
-        "url": "https://www.enlevia.com/",
-        "email": "info@enlevia.com",
-        "telephone": "+45 3166 6342"
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.enlevia.com/#website",
-        "url": "https://www.enlevia.com/",
-        "name": "Enlevia",
-        "publisher": { "@id": "https://www.enlevia.com/#org" }
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.enlevia.com/#org",
+      "name": "Enlevia",
+      "url": "https://www.enlevia.com/",
+      "email": "info@enlevia.com",
+      "telephone": "+45 3166 6342",
+      "description": "Enlevia hjælper ledelser med at omsætte strategi og transformation til målbare gevinster. Vi gør værdi tydelig nok til, at I kan prioritere porteføljen og styre efter det, der virker.",
+      "slogan": "Vi gør værdi tydelig nok til, at I kan styre, prioritere og handle på den.",
+      "areaServed": "DK",
+      "knowsAbout": [
+        "Gevinstrealisering",
+        "Porteføljestyring",
+        "Prioritering",
+        "Strategi",
+        "Transformation",
+        "Omsætte strategi til handling",
+        "Værdiskabelse",
+        "Beslutningsgrundlag",
+        "Business case",
+        "Styringsmodeller",
+        "Governance",
+        "PMO",
+        "Benefit realisation",
+        "Value realisation",
+        "Strategy execution",
+        "Portfolio management"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.enlevia.com/#website",
+      "url": "https://www.enlevia.com/",
+      "name": "Enlevia",
+      "inLanguage": "da",
+      "publisher": {
+        "@id": "https://www.enlevia.com/#org"
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.enlevia.com/#webpage",
+      "url": "https://www.enlevia.com/",
+      "name": "Rådgivning i strategi, porteføljestyring og gevinster | Enlevia",
+      "isPartOf": {
+        "@id": "https://www.enlevia.com/#website"
+      },
+      "about": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "inLanguage": "da",
+      "description": "Enlevia hjælper ledelser med at omsætte strategi og transformation til målbare gevinster. Vi gør værdi tydelig nok til, at I kan prioritere porteføljen og styre efter det, der virker.",
+      "keywords": "gevinstrealisering, gevinster, porteføljestyring, prioritering, strategi, transformation, omsætte strategi til handling, værdiskabelse, beslutningsgrundlag, business case, styringsmodel, governance, PMO"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.enlevia.com/#service-kortlaegning",
+      "name": "Hvad styrer jer egentlig?",
+      "provider": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "serviceType": "Kortlægning af styring, porteføljestyring og beslutningsgrundlag",
+      "areaServed": "DK",
+      "inLanguage": "da",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Ledelser og ledergrupper i offentlige og private organisationer"
+      },
+      "description": "Kort, ledelsesnært forløb (2–4 uger), der kortlægger, hvilke målinger, årshjul og beslutningsgrundlag der i praksis afgør jeres prioriteringer.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "DKK",
+          "minPrice": 65000,
+          "valueAddedTaxIncluded": false
+        },
+        "url": "https://www.enlevia.com/priser.html"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.enlevia.com/#service-sparring",
+      "name": "Ledelsessparring om værdiskabelse",
+      "provider": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "serviceType": "Ledelsessparring om prioritering og værdiskabelse",
+      "areaServed": "DK",
+      "inLanguage": "da",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Ledelser og ledergrupper i offentlige og private organisationer"
+      },
+      "description": "Fortrolig sparring (3–6 sessioner) til ledere, der står med en svær prioritering og skal se, hvad den koster, og hvad den giver.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "DKK",
+          "minPrice": 25000,
+          "valueAddedTaxIncluded": false
+        },
+        "url": "https://www.enlevia.com/priser.html"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.enlevia.com/#service-workshop",
+      "name": "Beslutningsworkshop",
+      "provider": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "serviceType": "Workshop om prioritering og værdi for ledergrupper",
+      "areaServed": "DK",
+      "inLanguage": "da",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Ledelser og ledergrupper i offentlige og private organisationer"
+      },
+      "description": "En dag for ledergrupper, der skal skabe fælles overblik over, hvor værdi tabes eller bliver uklar i styring og prioritering.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "DKK",
+          "minPrice": 29500,
+          "valueAddedTaxIncluded": false
+        },
+        "url": "https://www.enlevia.com/priser.html"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.enlevia.com/#service-gevinstrealisering",
+      "name": "Støtte til gevinstrealisering",
+      "provider": {
+        "@id": "https://www.enlevia.com/#org"
+      },
+      "serviceType": "Gevinstrealisering og omsætning af strategi til handling",
+      "areaServed": "DK",
+      "inLanguage": "da",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Ledelser og ledergrupper i offentlige og private organisationer"
+      },
+      "description": "Løbende støtte til at omsætte kortlægningen til konkret forandring og høste gevinsterne.",
+      "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "DKK",
+          "minPrice": 32000,
+          "valueAddedTaxIncluded": false,
+          "unitText": "pr. måned"
+        },
+        "url": "https://www.enlevia.com/priser.html"
+      }
+    }
+  ]
+}
+</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
